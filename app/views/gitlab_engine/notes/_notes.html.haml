@@ -1,0 +1,13 @@
+- if can? current_user, :write_note, @project
+  = render "gitlab_engine/notes/form"
+.clear
+%hr
+%ul#new_notes_list
+%ul#notes-list
+.status
+
+
+:javascript
+  $(function(){
+    NoteList.init("#{tid}", "#{tt}", "#{gitlab_engine.project_notes_path(@project)}");
+  });

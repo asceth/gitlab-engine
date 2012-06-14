@@ -1,0 +1,8 @@
+= render "gitlab_engine/issues/form"
+
+:javascript
+  $(function(){
+    $('select#issue_assignee_id').chosen();
+    $('select#issue_milestone_id').chosen();
+  });
+

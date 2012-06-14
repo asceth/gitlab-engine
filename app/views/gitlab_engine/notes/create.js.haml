@@ -1,0 +1,8 @@
+- if @note.line_code
+  = render "gitlab_engine/notes/create_line", :note => @note
+- else
+  = render "gitlab_engine/notes/create_common", :note => @note
+
+-# Enable submit button
+:plain
+  $("#submit_note").removeAttr("disabled");

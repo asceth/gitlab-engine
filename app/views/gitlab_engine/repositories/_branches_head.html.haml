@@ -1,0 +1,11 @@
+= render "gitlab_engine/commits/head"
+%ul.nav.nav-pills
+  %li{:class => ("active" if current_page?(gitlab_engine.project_repository_path(@project)))}
+    = link_to gitlab_engine.project_repository_path(@project) do
+      Recent
+  %li{:class => ("active" if current_page?(gitlab_engine.project_protected_branches_path(@project)))}
+    = link_to gitlab_engine.project_protected_branches_path(@project) do
+      Protected
+  %li{:class => ("active" if current_page?(gitlab_engine.branches_project_repository_path(@project)))}
+    = link_to gitlab_engine.branches_project_repository_path(@project) do
+      All

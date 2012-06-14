@@ -1,0 +1,10 @@
+!!! 5
+%html{ :lang => "en"}
+  = render "layouts/gitlab_engine/head"
+  %body{:class => "#{app_theme} application"}
+    = render "layouts/gitlab_engine/flash"
+    = render "layouts/gitlab_engine/head_panel", :title => "Dashboard"
+    .container
+      = render :partial => "layouts/gitlab_engine/app_menu"
+      .content
+        = yield

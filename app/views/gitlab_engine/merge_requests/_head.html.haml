@@ -1,0 +1,5 @@
+.top-tabs
+  = link_to gitlab_engine.project_merge_requests_path(@project), :class => "tab #{'active' if current_page?(gitlab_engine.project_merge_requests_path(@project)) }" do
+    %span
+    Merge Requests
+
