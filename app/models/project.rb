@@ -1,14 +1,14 @@
 require "grit"
 
 class Project < ActiveRecord::Base
-  include Repository
-  include GitPush
-  include Authority
-  include Team
+  include GitlabEngine::Repository
+  include GitlabEngine::GitPush
+  include GitlabEngine::Authority
+  include GitlabEngine::Team
 
   #
   # Relations
-  # 
+  #
   belongs_to :owner, :class_name => "User"
   has_many :users,          :through => :users_projects
   has_many :events,         :dependent => :destroy
@@ -23,12 +23,12 @@ class Project < ActiveRecord::Base
   has_many :wikis,          :dependent => :destroy
   has_many :protected_branches, :dependent => :destroy
 
-  # 
+  #
   # Protected attributes
   #
   attr_protected :private_flag, :owner_id
 
-  # 
+  #
   # Scopes
   #
   scope :public_only, where(:private_flag => false)
@@ -103,7 +103,7 @@ class Project < ActiveRecord::Base
       errors.add(:path, " like 'gitolite-admin' is not allowed")
     end
   end
-  
+
   def self.access_options
     UsersProject.access_roles
   end

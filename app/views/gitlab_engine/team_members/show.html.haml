@@ -48,7 +48,7 @@
             = form_for(@team_member, :as => :team_member, :url => gitlab_engine.project_team_member_path(@project, @team_member)) do |f|
               = f.select :project_access, options_for_select(Project.access_options, @team_member.project_access), {}, :class => "project-access-select", :disabled => !allow_admin
   %hr
-  = render user.recent_events.limit(3)
+  = render user.events.recent.limit(3)
   - if can? current_user, :admin_project, @project
     .form-horizontal
       .form-actions

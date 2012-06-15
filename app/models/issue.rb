@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
-  include Upvote
+  include GitlabEngine::Upvote
 
   belongs_to :project
   belongs_to :milestone
@@ -27,7 +27,7 @@ class Issue < ActiveRecord::Base
   validates :title,
             :presence => true,
             :length   => { :within => 0..255 }
-            
+
   validates :description,
             :length   => { :within => 0..2000 }
 

@@ -1,5 +1,5 @@
 class MergeRequest < ActiveRecord::Base
-  include Upvote
+  include GitlabEngine::Upvote
 
   UNCHECKED = 1
   CAN_BE_MERGED = 2

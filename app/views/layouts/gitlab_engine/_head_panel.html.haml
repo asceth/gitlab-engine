@@ -21,10 +21,10 @@
             %i.icon-plus
             Project
       .account-box
-        = link_to main_app.profile_path, :class => "pic" do
+        = link_to gitlab_engine.profile_path, :class => "pic" do
           = image_tag gravatar_icon(current_user.email)
         .account-links
-          = link_to main_app.profile_path, :class => "username" do
+          = link_to gitlab_engine.profile_path, :class => "username" do
             My profile
           = link_to 'Logout', main_app.destroy_user_session_path, :class => "logout", :method => :delete
 

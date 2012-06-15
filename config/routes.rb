@@ -13,6 +13,17 @@ GitlabEngine::Engine.routes.draw do
   get 'help/web_hooks' => 'help#web_hooks'
 
   #
+  # Profile Area
+  #
+  get "profile/password", :to => "profile#password"
+  put "profile/password", :to => "profile#password_update"
+  get "profile/token", :to => "profile#token"
+  put "profile/reset_private_token", :to => "profile#reset_private_token"
+  get "profile", :to => "profile#show"
+  get "profile/design", :to => "profile#design"
+  put "profile/update", :to => "profile#update"
+
+  #
   # Admin Area
   #
   namespace :admin do

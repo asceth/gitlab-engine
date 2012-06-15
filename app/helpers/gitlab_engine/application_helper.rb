@@ -61,7 +61,7 @@ module GitlabEngine
     def search_autocomplete_source
       projects = current_user.projects.map{ |p| { :label => p.name, :url => gitlab_engine.project_path(p) } }
       default_nav = [
-                     { :label => "Profile", :url => main_app.profile_path },
+                     { :label => "Profile", :url => gitlab_engine.profile_path },
                      { :label => "Keys", :url => gitlab_engine.keys_path },
                      { :label => "Dashboard", :url => root_path },
                      { :label => "Admin", :url => gitlab_engine.admin_root_path }

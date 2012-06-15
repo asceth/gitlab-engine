@@ -1,7 +1,8 @@
 class Commit
   include ActiveModel::Conversion
-  include Gitlab::Encode
+  include GitlabEngine::Gitlab::Encode
   extend ActiveModel::Naming
+
 
   attr_accessor :commit
   attr_accessor :head
@@ -22,7 +23,7 @@ class Commit
     :to => :commit
 
 
-  class << self 
+  class << self
     def find_or_first(repo, commit_id = nil, root_ref)
       commit = if commit_id
                  repo.commit(commit_id)

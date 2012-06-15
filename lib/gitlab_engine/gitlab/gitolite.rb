@@ -16,12 +16,6 @@ module GitlabEngine
       end
 
       def pull
-        # create tmp dir
-        @local_dir = File.join(Rails.root, 'tmp',"gitlabhq-gitolite-#{Time.now.to_i}")
-        Dir.mkdir @local_dir
-
-        `git clone #{GitHost.admin_uri} #{@local_dir}/gitolite`
-
         bare = Grit::Repo.new(Gitlab::GitHost.admin_path)
 
         # find tmp dir and create

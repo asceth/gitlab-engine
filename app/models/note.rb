@@ -1,5 +1,5 @@
+require 'carrierwave'
 require 'carrierwave/orm/activerecord'
-require 'file_size_validator'
 
 class Note < ActiveRecord::Base
   belongs_to :project
@@ -40,7 +40,7 @@ class Note < ActiveRecord::Base
   scope :inc_author_project, includes(:project, :author)
   scope :inc_author, includes(:author)
 
-  mount_uploader :attachment, AttachmentUploader
+  mount_uploader :attachment, GitlabEngine::AttachmentUploader
 
   def notify
     @notify ||= false
