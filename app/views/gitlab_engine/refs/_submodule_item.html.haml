@@ -3,7 +3,7 @@
 - return unless url
 %tr{ :class => "tree-item", :url => url }
   %td.tree-item-file-name
-    = image_tag "submodule.png"
+    = image_tag asset_path("gitlab_engine/submodule.png")
     %strong= truncate(name, :length => 40)
   %td
     %code= content.id[0..10]

@@ -38,7 +38,7 @@
       %div
         %span.rss-icon
           = link_to gitlab_engine.dashboard_path(:atom, { :private_token => current_user.private_token }) do
-            = image_tag "rss_ui.png", :title => "feed"
+            = image_tag asset_path("gitlab_engine/rss_ui.png"), :title => "feed"
             %strong News Feed
 
 - else

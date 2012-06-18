@@ -8,4 +8,4 @@
   %li.right
     %span.rss-icon
       = link_to gitlab_engine.project_issues_path(@project, :atom, { :private_token => current_user.private_token }) do
-        = image_tag "rss_ui.png", :title => "feed"
+        = image_tag asset_path("gitlab_engine/rss_ui.png"), :title => "feed"

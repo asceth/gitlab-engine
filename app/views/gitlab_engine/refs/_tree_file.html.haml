@@ -30,6 +30,6 @@
       = link_to gitlab_engine.blob_project_ref_path(@project, @ref, :path => params[:path]) do
         %div.padded
           %br
-          = image_tag "download.png", :width => 64
+          = image_tag asset_path("gitlab_engine/download.png"), :width => 64
           %h3
             Download (#{file.mb_size})

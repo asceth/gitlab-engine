@@ -9,6 +9,8 @@ end
 require "acts_as_list"
 require "acts-as-taggable-on"
 
+require "bootstrap-sass"
+
 require "carrierwave"
 require "charlock_holmes"
 require 'chosen-rails'
@@ -23,7 +25,12 @@ require "grit"
 require "haml-rails"
 require "httparty"
 
+require "jquery-rails"
+require "jquery-ui-rails"
+
 require "kaminari"
+
+require "modernizr"
 
 require "redcarpet"
 require "resque"

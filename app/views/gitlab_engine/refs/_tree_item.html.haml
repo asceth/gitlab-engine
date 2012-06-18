@@ -5,13 +5,13 @@
   %td.tree-item-file-name
     - if content.is_a?(Grit::Blob)
       - if content.text?
-        = image_tag "file_txt.png"
+        = image_tag asset_path("gitlab_engine/file_txt.png")
       - elsif content.image?
-        = image_tag "file_img.png"
+        = image_tag asset_path("gitlab_engine/file_img.png")
       - else
-        = image_tag "file_bin.png"
+        = image_tag asset_path("gitlab_engine/file_bin.png")
     - else
-      = image_tag "file_dir.png"
+      = image_tag asset_path("gitlab_engine/file_dir.png")
     = link_to truncate(content.name, :length => 40), tree_file_project_ref_path(@project, @ref || @commit.id, file), :remote => :true
   %td.cgray
     = time_ago_in_words(content_commit.committed_date)

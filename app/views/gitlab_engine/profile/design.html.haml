@@ -20,14 +20,14 @@
   .row
     %label.span3{:for => "user_dark_scheme_false"}
       .thumbnail
-        = image_tag "white.png", :width => 260, :class => "styled_image"
+        = image_tag asset_path("gitlab_engine/white.png"), :width => 260, :class => "styled_image"
         .caption
           %h5
             = f.radio_button :dark_scheme, false
             White code preview
     %label.span3{:for => "user_dark_scheme_true"}
       .thumbnail
-        = image_tag "dark.png", :width => 260, :class => "styled_image"
+        = image_tag asset_path("gitlab_engine/dark.png"), :width => 260, :class => "styled_image"
         .caption
           %h5
             = f.radio_button :dark_scheme, true

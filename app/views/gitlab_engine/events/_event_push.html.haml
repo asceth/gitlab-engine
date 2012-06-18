@@ -1,5 +1,5 @@
 %div
-  .event_icon= image_tag "event_push.png"
+  .event_icon= image_tag asset_path("gitlab_engine/event_push.png")
   = image_tag gravatar_icon(event.author_email), :class => "avatar"
   %strong #{event.author_name}
   %span.event_label= event.push_action_name

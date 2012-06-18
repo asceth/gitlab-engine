@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_list"
   s.add_dependency "acts-as-taggable-on", "~> 2.1.0"
 
+  s.add_dependency 'bootstrap-sass', "2.0.3.1"
+
   s.add_dependency "carrierwave"
   s.add_dependency "charlock_holmes"
   s.add_dependency 'chosen-rails'
@@ -35,7 +37,12 @@ Gem::Specification.new do |s|
   s.add_dependency "haml-rails"
   s.add_dependency "httparty"
 
+  s.add_dependency "jquery-rails"
+  s.add_dependency "jquery-ui-rails"
+
   s.add_dependency "kaminari"
+
+  s.add_dependency "modernizr", "2.5.3"
 
   s.add_dependency "redcarpet", "~> 2.1.1"
   s.add_dependency "resque", "~> 1.20.0"
@@ -44,7 +51,4 @@ Gem::Specification.new do |s|
   s.add_dependency "six"
   s.add_dependency "stamp"
 
-  # s.add_dependency "jquery-rails"
-
-  s.add_development_dependency "sqlite3"
 end
