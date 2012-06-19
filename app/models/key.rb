@@ -1,7 +1,7 @@
 require 'digest/md5'
 
 class Key < ActiveRecord::Base
-  include SshKey
+  include GitlabEngine::SshKey
   belongs_to :user
   belongs_to :project
 
