@@ -1,5 +1,5 @@
 module GitlabEngine
-  class SearchController < ApplicationController
+  class SearchController < GitlabEngine::ApplicationController
     def show
       query = params[:search]
       if query.blank?

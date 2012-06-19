@@ -1,5 +1,5 @@
 module GitlabEngine
-  class ProjectsController < ApplicationController
+  class ProjectsController < GitlabEngine::ApplicationController
     before_filter :project, :except => [:index, :new, :create]
     layout :determine_layout
 

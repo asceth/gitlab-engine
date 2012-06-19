@@ -1,5 +1,5 @@
 module GitlabEngine
-  class HooksController < ApplicationController
+  class HooksController < GitlabEngine::ApplicationController
     before_filter :authenticate_user!
     before_filter :project
     layout "gitlab_engine/project"

@@ -1,5 +1,5 @@
 module GitlabEngine
-  class RefsController < ApplicationController
+  class RefsController < GitlabEngine::ApplicationController
     include Gitlab::Encode
     before_filter :project
 

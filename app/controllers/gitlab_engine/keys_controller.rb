@@ -1,5 +1,5 @@
 module GitlabEngine
-  class KeysController < ApplicationController
+  class KeysController < GitlabEngine::ApplicationController
     layout "gitlab_engine/profile"
     respond_to :js, :html
 

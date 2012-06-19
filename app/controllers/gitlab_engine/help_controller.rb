@@ -1,5 +1,5 @@
 module GitlabEngine
-  class HelpController < ApplicationController
+  class HelpController < GitlabEngine::ApplicationController
     def index
     end
   end

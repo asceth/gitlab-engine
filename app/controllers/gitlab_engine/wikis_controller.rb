@@ -1,5 +1,5 @@
 module GitlabEngine
-  class WikisController < ApplicationController
+  class WikisController < GitlabEngine::ApplicationController
     before_filter :project
     before_filter :add_project_abilities
     before_filter :authorize_read_wiki!

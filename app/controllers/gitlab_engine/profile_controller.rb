@@ -1,5 +1,5 @@
 module GitlabEngine
-  class ProfileController < ApplicationController
+  class ProfileController < GitlabEngine::ApplicationController
     layout "gitlab_engine/profile"
 
     def show

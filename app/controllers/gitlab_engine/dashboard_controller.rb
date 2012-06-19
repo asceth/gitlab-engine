@@ -1,5 +1,5 @@
 module GitlabEngine
-  class DashboardController < ApplicationController
+  class DashboardController < GitlabEngine::ApplicationController
     respond_to :html
 
     def index

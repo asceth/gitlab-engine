@@ -1,7 +1,7 @@
 require "base64"
 
 module GitlabEngine
-  class CommitsController < ApplicationController
+  class CommitsController < GitlabEngine::ApplicationController
     before_filter :project
     layout "gitlab_engine/project"
 

@@ -1,5 +1,5 @@
 module GitlabEngine
-  class ProtectedBranchesController < ApplicationController
+  class ProtectedBranchesController < GitlabEngine::ApplicationController
     before_filter :project
 
     # Authorize

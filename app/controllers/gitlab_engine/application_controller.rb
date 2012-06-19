@@ -73,7 +73,7 @@ module GitlabEngine
     end
 
     def add_project_abilities
-      abilities << Ability
+      abilities << GitlabEngine::Ability
     end
 
     def authenticate_admin!

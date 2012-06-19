@@ -58,6 +58,7 @@ require "gitlab_engine/gitlab/theme"
 
 require "gitlab_engine/redcarpet/render/gitlab_html"
 
+
 #
 # Engage.
 #

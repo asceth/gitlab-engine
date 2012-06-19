@@ -1,5 +1,5 @@
 module GitlabEngine
-  class TeamMembersController < ApplicationController
+  class TeamMembersController < GitlabEngine::ApplicationController
     before_filter :project
     layout "gitlab_engine/project"
 

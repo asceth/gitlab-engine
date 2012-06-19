@@ -30,9 +30,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "drapper"
 
-  s.add_dependency "git"
   s.add_dependency "graphael-rails",  "0.1.4"
-  s.add_dependency "grit", "2.5.0"
 
   s.add_dependency "haml-rails"
   s.add_dependency "httparty"

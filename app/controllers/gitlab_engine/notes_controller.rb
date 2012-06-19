@@ -1,5 +1,5 @@
 module GitlabEngine
-  class NotesController < ApplicationController
+  class NotesController < GitlabEngine::ApplicationController
     before_filter :project
 
     # Authorize

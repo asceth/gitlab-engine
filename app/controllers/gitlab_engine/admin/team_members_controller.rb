@@ -1,5 +1,5 @@
 module GitlabEngine
-  class Admin::TeamMembersController < ApplicationController
+  class Admin::TeamMembersController < GitlabEngine::ApplicationController
     layout "gitlab_engine/admin"
     before_filter :authenticate_user!
     before_filter :authenticate_admin!

@@ -1,5 +1,5 @@
 module GitlabEngine
-  class Admin::DashboardController < ApplicationController
+  class Admin::DashboardController < GitlabEngine::ApplicationController
     layout "gitlab_engine/admin"
     before_filter :authenticate_user!
     before_filter :authenticate_admin!

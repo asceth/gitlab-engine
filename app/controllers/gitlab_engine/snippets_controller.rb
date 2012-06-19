@@ -1,5 +1,5 @@
 module GitlabEngine
-  class SnippetsController < ApplicationController
+  class SnippetsController < GitlabEngine::ApplicationController
     before_filter :authenticate_user!
     before_filter :project
     before_filter :snippet, :only => [:show, :edit, :destroy, :update, :raw]

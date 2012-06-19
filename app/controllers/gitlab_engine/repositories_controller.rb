@@ -1,5 +1,5 @@
 module GitlabEngine
-  class RepositoriesController < ApplicationController
+  class RepositoriesController < GitlabEngine::ApplicationController
     before_filter :project
 
     # Authorize

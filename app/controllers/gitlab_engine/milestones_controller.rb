@@ -1,5 +1,5 @@
 module GitlabEngine
-  class MilestonesController < ApplicationController
+  class MilestonesController < GitlabEngine::ApplicationController
     before_filter :authenticate_user!
     before_filter :project
     before_filter :module_enabled

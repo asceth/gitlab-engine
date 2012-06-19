@@ -1,5 +1,5 @@
 module GitlabEngine
-  class ErrorsController < ApplicationController
+  class ErrorsController < GitlabEngine::ApplicationController
     layout "gitlab_engine/error"
 
     def githost

@@ -1,5 +1,5 @@
 module GitlabEngine
-  class DeployKeysController < ApplicationController
+  class DeployKeysController < GitlabEngine::ApplicationController
     respond_to :html
     layout "gitlab_engine/project"
     before_filter :project
