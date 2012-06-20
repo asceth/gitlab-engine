@@ -26,9 +26,10 @@ module GitlabEngine
         # ensure message encoding is utf8
         message.valid_encoding? ? message : raise
 
-        # Prevent app from crash cause of encoding errors
+      # Prevent app from crash cause of encoding errors
       rescue
-        "--broken encoding: #{detect[:encoding]}"
+        encoding = detect ? detect[:encoding] : "unknown"
+        "--broken encoding: #{encoding}"
       end
 
       def detect_encoding message

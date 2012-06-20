@@ -11,3 +11,4 @@ class PostReceive
     project.trigger_post_receive(oldrev, newrev, ref, author_key_id)
   end
 end
+
