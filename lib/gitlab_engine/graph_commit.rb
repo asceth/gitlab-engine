@@ -157,13 +157,13 @@ class GraphCommit
     h[:parents] = self.parents.collect do |p|
       [p.id,0,0]
     end
-    h[:author]  = Gitlab::Encode.utf8(author.name)
+    h[:author]  = GitlabEngine::Gitlab::Encode.utf8(author.name)
     h[:time]    = time
     h[:space]   = space
     h[:refs]    = refs.collect{|r|r.name}.join(" ") unless refs.nil?
     h[:id]      = sha
     h[:date]    = date
-    h[:message] = Gitlab::Encode.utf8(message)
+    h[:message] = GitlabEngine::Gitlab::Encode.utf8(message)
     h[:login]   = author.email
     h
   end

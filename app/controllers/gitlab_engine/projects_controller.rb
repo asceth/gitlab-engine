@@ -60,7 +60,7 @@ module GitlabEngine
             @last_push = current_user.recent_push(@project.id)
             render :show
           else
-            render "projects/empty"
+            render "gitlab_engine/projects/empty"
           end
         end
       end
@@ -95,7 +95,7 @@ module GitlabEngine
       UsersProject.set_callback(:destroy, :after, :update_repository)
 
       respond_to do |format|
-        format.html { redirect_to projects_url }
+        format.html { redirect_to dashboard_url }
       end
     end
 
@@ -110,7 +110,7 @@ module GitlabEngine
       if @project && !@project.new_record?
         "gitlab_engine/project"
       else
-        "application"
+        "gitlab_engine/application"
       end
     end
   end

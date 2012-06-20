@@ -52,7 +52,7 @@ class Note < ActiveRecord::Base
 
   def target
     if noteable_type == "Commit"
-      project.commit(noteable_id)
+      project.commit(commit_id)
     else
       noteable
     end

@@ -6,8 +6,10 @@ class ProtectedBranch < ActiveRecord::Base
   after_save :update_repository
   after_destroy :update_repository
 
+  attr_accessible :project, :name
+
   def update_repository
-    Gitlab::GitHost.system.update_project(project.path, project)
+    GitlabEngine::Gitlab::GitHost.system.update_project(project.path, project)
   end
 
   def commit

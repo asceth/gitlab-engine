@@ -88,6 +88,18 @@ module GitlabEngine
       return access_denied! unless can?(current_user, :download_code, project)
     end
 
+    def access_denied!
+      render "errors/access_denied", :layout => "error", :status => 404
+    end
+
+    def not_found!
+      render "errors/not_found", :layout => "error", :status => 404
+    end
+
+    def git_not_found!
+      render "errors/git_not_found", :layout => "error", :status => 404
+    end
+
     def method_missing(method_sym, *arguments, &block)
       if method_sym.to_s =~ /^authorize_(.*)!$/
         authorize_project!($1.to_sym)

@@ -5,6 +5,8 @@ class Milestone < ActiveRecord::Base
   validates_presence_of :project_id
   validates_presence_of :title
 
+  attr_protected :project_id
+
   def self.active
     where("due_date > ? OR due_date IS NULL", Date.today)
   end

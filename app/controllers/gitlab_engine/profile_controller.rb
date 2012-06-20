@@ -30,7 +30,7 @@ module GitlabEngine
 
       if @user.update_attributes(params[:user])
         flash[:notice] = "Password was successfully updated. Please login with it"
-        redirect_to new_user_session_path
+        redirect_to main_app.new_user_session_path
       else
         render :action => "password"
       end
@@ -38,7 +38,7 @@ module GitlabEngine
 
     def reset_private_token
       current_user.reset_authentication_token!
-      redirect_to profile_token_path
+      redirect_to gitlab_engine.profile_token_path
     end
   end
 end
