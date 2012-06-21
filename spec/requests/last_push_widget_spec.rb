@@ -42,7 +42,7 @@ describe "Last Push widget" do
     }
 
     @event = Event.create(
-      :project_id => @project.id,
+      :project => @project,
       :action => Event::Pushed,
       :data => data,
       :author_id => @user.id

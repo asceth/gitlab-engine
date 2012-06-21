@@ -7,6 +7,8 @@ class Wiki < ActiveRecord::Base
 
   before_update :set_slug
 
+  attr_accessible :slug, :title, :content
+
   def to_param
     slug
   end

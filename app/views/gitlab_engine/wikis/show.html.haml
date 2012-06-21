@@ -13,5 +13,5 @@
 
 %p.time Last edited by #{@wiki.user.name}, #{time_ago_in_words @wiki.created_at} ago
 - if can? current_user, :admin_wiki, @project
-  = link_to gitlab_engine.project_wiki_path(@project, @wiki), :confirm => "Are you sure you want to delete this page?", :method => :delete do
+  = link_to gitlab_engine.project_wiki_path(@project, @wiki), {:data => {:confirm => "Are you sure you want to delete this page?"}, :method => :delete} do
     Delete this page

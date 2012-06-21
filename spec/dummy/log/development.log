@@ -2966,3 +2966,6 @@ Migrating to AddCommitIdToNotes (20120621135904)
  AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
  ORDER BY i.relname
 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml

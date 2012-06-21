@@ -18,6 +18,8 @@ class Key < ActiveRecord::Base
   delegate :name, :email, :to => :user, :prefix => true
   validate :unique_key, :on => :create
 
+  attr_accessible :title, :key
+
   def strip_white_space
     self.key = self.key.strip unless self.key.blank?
   end

@@ -4,11 +4,11 @@ module GitlabEngine
     # Should be rewrited for new access rights
     def add_access(user, *access)
       access = if access.include?(:admin)
-                 { :project_access => UsersProject::MASTER }
+                 { :project_access => ::UsersProject::MASTER }
                elsif access.include?(:write)
-                 { :project_access => UsersProject::DEVELOPER }
+                 { :project_access => ::UsersProject::DEVELOPER }
                else
-                 { :project_access => UsersProject::REPORTER }
+                 { :project_access => ::UsersProject::REPORTER }
                end
       opts = { :user => user }
       opts.merge!(access)
@@ -21,19 +21,19 @@ module GitlabEngine
 
     def repository_readers
       keys = Key.joins({:user => :users_projects}).
-        where("users_projects.project_id = ? AND users_projects.project_access = ?", id, UsersProject::REPORTER)
+        where("users_projects.project_id = ? AND users_projects.project_access = ?", id, ::UsersProject::REPORTER)
       keys.map(&:identifier) + deploy_keys.map(&:identifier)
     end
 
     def repository_writers
       keys = Key.joins({:user => :users_projects}).
-        where("users_projects.project_id = ? AND users_projects.project_access = ?", id, UsersProject::DEVELOPER)
+        where("users_projects.project_id = ? AND users_projects.project_access = ?", id, ::UsersProject::DEVELOPER)
       keys.map(&:identifier)
     end
 
     def repository_masters
       keys = Key.joins({:user => :users_projects}).
-        where("users_projects.project_id = ? AND users_projects.project_access = ?", id, UsersProject::MASTER)
+        where("users_projects.project_id = ? AND users_projects.project_access = ?", id, ::UsersProject::MASTER)
       keys.map(&:identifier)
     end
 
@@ -46,15 +46,15 @@ module GitlabEngine
     end
 
     def report_access_for?(user)
-      !users_projects.where(:user_id => user.id, :project_access => [UsersProject::REPORTER, UsersProject::DEVELOPER, UsersProject::MASTER]).empty?
+      !users_projects.where(:user_id => user.id, :project_access => [::UsersProject::REPORTER, ::UsersProject::DEVELOPER, ::UsersProject::MASTER]).empty?
     end
 
     def dev_access_for?(user)
-      !users_projects.where(:user_id => user.id, :project_access => [UsersProject::DEVELOPER, UsersProject::MASTER]).empty?
+      !users_projects.where(:user_id => user.id, :project_access => [::UsersProject::DEVELOPER, ::UsersProject::MASTER]).empty?
     end
 
     def master_access_for?(user)
-      !users_projects.where(:user_id => user.id, :project_access => [UsersProject::MASTER]).empty? || owner_id == user.id
+      !users_projects.where(:user_id => user.id, :project_access => [::UsersProject::MASTER]).empty? || owner_id == user.id
     end
   end
 end

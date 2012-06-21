@@ -20,7 +20,7 @@ module GitlabEngine
       @team_member = UsersProject.new(params[:team_member])
       @team_member.project = project
       if @team_member.save
-        redirect_to team_project_path(@project)
+        redirect_to project_team_members_path(@project)
       else
         render "new"
       end
@@ -33,7 +33,7 @@ module GitlabEngine
       unless @team_member.valid?
         flash[:alert] = "User should have at least one role"
       end
-      redirect_to team_project_path(@project)
+      redirect_to project_team_members_path(@project)
     end
 
     def destroy
@@ -41,7 +41,7 @@ module GitlabEngine
       @team_member.destroy
 
       respond_to do |format|
-        format.html { redirect_to team_project_path(@project) }
+        format.html { redirect_to project_team_members_path(@project) }
         format.js { render :nothing => true }
       end
     end

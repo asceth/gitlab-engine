@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   scope :recent, order("created_at DESC")
   scope :code_push, where(:action => Pushed)
 
-  attr_accessible :project_id, :target_id, :target_type, :action, :data, :author_id
+  attr_accessible :project, :target_id, :target_type, :action, :data, :author_id
 
   def self.determine_action(record)
     if [Issue, MergeRequest].include? record.class

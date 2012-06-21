@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # Devise
   #
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
 
   #

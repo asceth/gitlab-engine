@@ -19,7 +19,7 @@
 
   .actions
     = f.submit 'Save', :class => "btn primary"
-    = link_to "Cancel", team_project_path(@project), :class => "btn"
+    = link_to "Cancel", project_team_members_path(@project), :class => "btn"
 
 :css
   form select {

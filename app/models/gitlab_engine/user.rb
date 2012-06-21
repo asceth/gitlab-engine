@@ -48,6 +48,12 @@ module GitlabEngine
 
         alias_attribute :private_token, :authentication_token
 
+
+        #
+        # Callbacks
+        #
+        before_save :ensure_authentication_token
+
       end # end class_eval
 
       base.send(:extend, ClassMethods)

@@ -4,7 +4,7 @@ module GitlabEngine
       data = post_receive_data(oldrev, newrev, ref, user)
 
       Event.create(
-                   :project_id => self.id,
+                   :project => self,
                    :action => Event::Pushed,
                    :data => data,
                    :author_id => data[:user_id]

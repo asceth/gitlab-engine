@@ -15,7 +15,7 @@
         You don`t have one yet. Click generate to fix it.
   .actions
     - if current_user.private_token
-      = f.submit 'Reset', :confirm => "Are you sure?", :class => "btn"
+      = f.submit 'Reset', {:data => {:confirm => "Are you sure?"}, :class => "btn"}
     - else
       = f.submit 'Generate', :class => "btn primary"
 

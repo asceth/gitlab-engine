@@ -4,43 +4,40 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-require File.expand_path(File.dirname(__FILE__) + '/../../test/dummy/config/environment.rb')
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path(File.dirname(__FILE__) + '/../../spec/dummy/config/environment.rb')
+ENV["RAILS_ROOT"] = Rails.root.to_s
 
-require "selenium-webdriver"
+require 'capybara/webkit'
 require 'cucumber/rails'
 require 'webmock/cucumber'
 WebMock.allow_net_connect!
 
-require Rails.root.join 'spec/monkeypatch'
-require Rails.root.join 'spec/factories'
-require Rails.root.join 'spec/support/login'
-require Rails.root.join 'spec/support/valid_commit'
+require 'faker'
+require "#{File.dirname(__FILE__)}/../../spec/factories"
+require "#{File.dirname(__FILE__)}/../../spec/support/login"
+require "#{File.dirname(__FILE__)}/../../spec/support/valid_commit"
+require "#{File.dirname(__FILE__)}/../../spec/monkeypatch"
 
-# Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
-# order to ease the transition to Capybara we set the default here. If you'd
-# prefer to use XPath just remove this line and adjust any selectors in your
-# steps to use the XPath syntax.
+GitlabEngine::Gitlab::Gitolite.skip = true
+
+Devise.setup do |config|
+  config.stretches = 1
+end
+
+module Cucumber
+  module Rails
+    class World < ActionController::IntegrationTest
+      include GitlabEngine::Engine.routes.url_helpers
+    end
+  end
+end
+
+Capybara.javascript_driver = :webkit
 Capybara.default_selector = :css
 
-# By default, any exception happening in your Rails application will bubble up
-# to Cucumber so that your scenario will fail. This is a different from how
-# your application behaves in the production environment, where an error page will
-# be rendered instead.
-#
-# Sometimes we want to override this default behaviour and allow Rails to rescue
-# exceptions and display an error page (just like when the app is running in production).
-# Typical scenarios where you want to do this is when you test your error pages.
-# There are two ways to allow Rails to rescue exceptions:
-#
-# 1) Tag your scenario (or feature) with @allow-rescue
-#
-# 2) Set the value below to true. Beware that doing this globally is not
-# recommended as it will mask a lot of errors for you!
-#
 ActionController::Base.allow_rescue = false
 
-# Remove/comment out the lines below if your app doesn't have a database.
-# For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
   DatabaseCleaner.strategy = :transaction
 rescue NameError

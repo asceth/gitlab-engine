@@ -9,7 +9,7 @@ Given /^"(.*?)" is "(.*?)" developer$/ do |arg1, arg2|
 end
 
 Given /^I visit project "(.*?)" team page$/ do |arg1|
-  visit team_project_path(Project.find_by_name(arg1))
+  visit project_team_members_path(Project.find_by_name(arg1))
 end
 
 Then /^I should be able to see myself in team$/ do
@@ -29,7 +29,7 @@ end
 
 Given /^I select "(.*?)" as "(.*?)"$/ do |arg1, arg2|
   user = User.find_by_name(arg1)
-  within "#new_team_member" do 
+  within "#new_team_member" do
     select user.name, :from => "team_member_user_id"
     select arg2, :from => "team_member_project_access"
   end
@@ -44,7 +44,7 @@ end
 
 Given /^I change "(.*?)" role to "(.*?)"$/ do |arg1, arg2|
   user = User.find_by_name(arg1)
-  within ".user_#{user.id}" do 
+  within ".user_#{user.id}" do
     select arg2, :from => "team_member_project_access"
   end
 end

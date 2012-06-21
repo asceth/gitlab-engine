@@ -13,5 +13,5 @@
         ago.
 
       - if event.project.merge_requests_enabled
-        = link_to gitlab_engine.new_mr_path_from_push_event(event), :title => "New Merge Request", :class => "btn small padded primary" do
+        = link_to new_mr_path_from_push_event(event), :title => "New Merge Request", :class => "btn small padded primary" do
           Create Merge Request
