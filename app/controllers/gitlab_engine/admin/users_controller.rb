@@ -5,13 +5,13 @@ module GitlabEngine
     before_filter :authenticate_admin!
 
     def index
-      @admin_users = User.scoped
+      @admin_users = ::User.scoped
       @admin_users = @admin_users.filter(params[:filter])
       @admin_users = @admin_users.order("updated_at DESC").page(params[:page])
     end
 
     def show
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
 
       @projects = if @admin_user.projects.empty?
                     Project
@@ -21,7 +21,7 @@ module GitlabEngine
     end
 
     def team_update
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
 
       UsersProject.user_bulk_import(
                                     @admin_user,
@@ -34,15 +34,15 @@ module GitlabEngine
 
 
     def new
-      @admin_user = User.new(:projects_limit => 10)
+      @admin_user = ::User.new(:projects_limit => 10)
     end
 
     def edit
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
     end
 
     def block
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
 
       if @admin_user.block
         redirect_to :back, alert: "Successfully blocked"
@@ -52,7 +52,7 @@ module GitlabEngine
     end
 
     def unblock
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
 
       if @admin_user.update_attribute(:blocked, false)
         redirect_to :back, alert: "Successfully unblocked"
@@ -64,7 +64,7 @@ module GitlabEngine
     def create
       admin = params[:user].delete("admin")
 
-      @admin_user = User.new(params[:user])
+      @admin_user = ::User.new(params[:user])
       @admin_user.admin = (admin && admin.to_i > 0)
 
       respond_to do |format|
@@ -86,7 +86,7 @@ module GitlabEngine
         params[:user].delete(:password_confirmation)
       end
 
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
       @admin_user.admin = (admin && admin.to_i > 0)
 
       respond_to do |format|
@@ -101,7 +101,7 @@ module GitlabEngine
     end
 
     def destroy
-      @admin_user = User.find(params[:id])
+      @admin_user = ::User.find(params[:id])
       @admin_user.destroy
 
       respond_to do |format|
