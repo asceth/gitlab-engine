@@ -30,12 +30,6 @@ module GitlabEngine
       end
     rescue Gitlab::Gitolite::AccessDenied
       render :js => "location.href = '#{errors_githost_path}'" and return
-    rescue StandardError => ex
-      @project.errors.add(:base, "Cant save project. Please try again later")
-      respond_to do |format|
-        format.html { render action: "new" }
-        format.js
-      end
     end
 
     def update
