@@ -19,7 +19,7 @@
         %h5
           Projects
           %small
-            (#{@projects.total_count})
+            (#{@projects.count})
           - if current_user.can_create_project?
             %span.right
               = link_to gitlab_engine.new_project_path, :class => "btn very_small info" do
@@ -32,7 +32,6 @@
               = truncate(project.name, :length => 25)
               %span.right
                 &rarr;
-        .bottom= paginate @projects, :theme => "gitlab"
 
       %hr
       %div
