@@ -62,7 +62,6 @@ $(document).ready(function(){
     $(this).next('table').show();
     $(this).remove();
   });
-}
 });
 
 function focusSearch() {
