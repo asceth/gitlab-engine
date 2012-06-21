@@ -58,7 +58,7 @@ class UsersProject < ActiveRecord::Base
   end
 
   def update_repository
-    Gitlab::GitHost.system.new.configure do |c|
+    GitlabEngine::Gitlab::GitHost.system.new.configure do |c|
       c.update_project(project.path, project)
     end
   end

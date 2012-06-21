@@ -1,6 +1,6 @@
 module GitlabEngine
   class RefsController < GitlabEngine::ApplicationController
-    include Gitlab::Encode
+    include GitlabEngine::Gitlab::Encode
     before_filter :project
 
     # Authorize

@@ -28,7 +28,7 @@ module GitlabEngine
           format.js
         end
       end
-    rescue Gitlab::Gitolite::AccessDenied
+    rescue GitlabEngine::Gitlab::Gitolite::AccessDenied
       render :js => "location.href = '#{errors_githost_path}'" and return
     end
 

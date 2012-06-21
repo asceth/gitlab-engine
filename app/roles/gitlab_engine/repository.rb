@@ -38,7 +38,7 @@ module GitlabEngine
     end
 
     def satellite
-      @satellite ||= Gitlab::Satellite.new(self)
+      @satellite ||= GitlabEngine::Gitlab::Satellite.new(self)
     end
 
     def write_hook(name, content)
@@ -65,7 +65,7 @@ module GitlabEngine
     end
 
     def url_to_repo
-      Gitlab::GitHost.url_to_repo(path)
+      GitlabEngine::Gitlab::GitHost.url_to_repo(path)
     end
 
     def path_to_repo
@@ -73,13 +73,13 @@ module GitlabEngine
     end
 
     def update_repository
-      Gitlab::GitHost.system.update_project(path, self)
+      GitlabEngine::Gitlab::GitHost.system.update_project(path, self)
 
       write_hooks if File.exists?(path_to_repo)
     end
 
     def destroy_repository
-      Gitlab::GitHost.system.destroy_project(self)
+      GitlabEngine::Gitlab::GitHost.system.destroy_project(self)
     end
 
     def repo_exists?

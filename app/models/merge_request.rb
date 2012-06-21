@@ -83,7 +83,7 @@ class MergeRequest < ActiveRecord::Base
   end
 
   def check_if_can_be_merged
-    self.state = if Gitlab::Merge.new(self, self.author).can_be_merged?
+    self.state = if GitlabEngine::Gitlab::Merge.new(self, self.author).can_be_merged?
                    CAN_BE_MERGED
                  else
                    CANNOT_BE_MERGED
@@ -179,7 +179,7 @@ class MergeRequest < ActiveRecord::Base
   end
 
   def automerge!(current_user)
-    if Gitlab::Merge.new(self, current_user).merge
+    if GitlabEngine::Gitlab::Merge.new(self, current_user).merge
       self.merge!(current_user.id)
       true
     end
