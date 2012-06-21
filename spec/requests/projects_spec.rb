@@ -79,13 +79,13 @@ describe "Projects" do
       @project = Factory :project
       @project.add_access(@user, :read)
 
-      visit team_project_path(@project,
+      visit project_team_members_path(@project,
                               :path => ValidCommit::BLOB_FILE_PATH,
                               :commit_id => ValidCommit::ID)
     end
 
     it "should be correct path" do
-      current_path.should == team_project_path(@project)
+      current_path.should == project_team_members_path(@project)
     end
 
     it "should have as as team member" do

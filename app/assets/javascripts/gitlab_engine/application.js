@@ -5,6 +5,7 @@
 // the compiled file.
 //
 //= require jquery
+//= require jquery.ui.all
 //= requrey jquery-ujs
 //= require jquery.ui.selectmenu
 //= require jquery.tagify
@@ -52,6 +53,16 @@ $(document).ready(function(){
         e.preventDefault();
     }
   });
+
+  /**
+   * Commit show suppressed diff
+   *
+   */
+  $(".supp_diff_link").bind("click", function() {
+    $(this).next('table').show();
+    $(this).remove();
+  });
+}
 });
 
 function focusSearch() {
@@ -72,11 +83,6 @@ function resetMenu() {
 
 function slugify(text) {
   return text.replace(/[^-a-zA-Z0-9]+/g, '_').toLowerCase();
-}
-
-function showDiff(link) {
-  $(link).next('table').show();
-  $(link).remove();
 }
 
 (function($){

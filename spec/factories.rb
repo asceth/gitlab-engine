@@ -9,7 +9,7 @@ end
 
 Factory.add(:public_project, Project) do |obj|
   obj.name = Faker::Internet.user_name
-  obj.path = 'gitlabhq'
+  obj.path = 'gitlab_engine'
   obj.private_flag = false
   obj.owner = Factory(:user)
   obj.code = 'LGT'

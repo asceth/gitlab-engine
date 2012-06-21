@@ -95,7 +95,6 @@ describe "Issues" do
         it { expect { click_button "Submit new issue" }.to change {Issue.count}.by(1) }
 
         it "should add new issue to table" do
-          save_and_open_page
           click_button "Submit new issue"
 
           page.should_not have_content("Add new issue")

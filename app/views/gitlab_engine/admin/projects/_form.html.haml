@@ -57,7 +57,7 @@
     = f.submit 'Save', :class => "btn primary"
     = link_to 'Cancel', [:admin, @admin_project], :class => "btn"
     - unless @admin_project.new_record?
-      = link_to 'Destroy', [:admin, @admin_project], :confirm => 'Are you sure?', :method => :delete, :class => "btn danger right"
+      = link_to 'Destroy', [:admin, @admin_project], {:data => {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn danger right"}
 
 :javascript
   $(function(){

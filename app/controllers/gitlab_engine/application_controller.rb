@@ -89,15 +89,15 @@ module GitlabEngine
     end
 
     def access_denied!
-      render "errors/access_denied", :layout => "error", :status => 404
+      render "gitlab_engine/errors/access_denied", :layout => "error", :status => 404
     end
 
     def not_found!
-      render "errors/not_found", :layout => "error", :status => 404
+      render "gitlab_engine/errors/not_found", :layout => "error", :status => 404
     end
 
     def git_not_found!
-      render "errors/git_not_found", :layout => "error", :status => 404
+      render "gitlab_engine/errors/git_not_found", :layout => "error", :status => 404
     end
 
     def method_missing(method_sym, *arguments, &block)

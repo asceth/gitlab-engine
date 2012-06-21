@@ -61,4 +61,4 @@
     = link_to 'Cancel', gitlab_engine.project_path(@project), :class => "btn"
     - unless @project.new_record?
       .right
-        = link_to 'Remove', gitlab_engine.project_path(@project), :confirm => 'Are you sure?', :method => :delete, :class => "btn danger"
+        = link_to 'Remove', gitlab_engine.project_path(@project), {:data => {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn danger"}
