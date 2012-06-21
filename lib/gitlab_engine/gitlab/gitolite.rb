@@ -7,6 +7,16 @@ module GitlabEngine
     class Gitolite
       class AccessDenied < StandardError; end
 
+      @@skip = false
+
+      def self.skip=(value)
+        @@skip = value
+      end
+
+      def self.skip?
+        @@skip == true
+      end
+
       def self.update_project(path, project)
         self.new.configure { |git| git.update_project(path, project) }
       end
@@ -39,6 +49,8 @@ module GitlabEngine
       end
 
       def configure
+        return if Gitolite.skip?
+
         Timeout::timeout(20) do
           pull
           yield(self)
@@ -50,7 +62,6 @@ module GitlabEngine
       end
 
       def destroy_project(project)
-        return
         FileUtils.rm_rf(project.path_to_repo)
 
         ga_repo = ::Gitolite::GitoliteAdmin.new(@path)
@@ -72,7 +83,6 @@ module GitlabEngine
 
       # update or create
       def update_project(repo_name, project)
-        return
         ga_repo = ::Gitolite::GitoliteAdmin.new(@path)
         conf = ga_repo.config
         repo = update_project_config(project, conf)
