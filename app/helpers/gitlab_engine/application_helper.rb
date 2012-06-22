@@ -85,5 +85,9 @@ module GitlabEngine
     def app_theme
       GitlabEngine::Gitlab::Theme.css_class_by_id(current_user.try(:theme_id))
     end
+
+    def show_last_push_widget?(event)
+      event && event.last_push_to_non_root? && event.project && event.project.merge_requests_enabled
+    end
   end
 end

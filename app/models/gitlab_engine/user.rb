@@ -95,6 +95,10 @@ module GitlabEngine
                               )
         end
       end
+
+      def search(query)
+        where("name like :query or email like :query", :query => "%#{query}%")
+      end
     end # end ClassMethods
 
 
@@ -151,8 +155,8 @@ module GitlabEngine
       end
 
       def recent_push project_id = nil
-        # Get push events not earlier than 6 hours ago
-        scope = events.code_push.where("created_at > ?", Time.now - 6.hours)
+        # Get push events not earlier than 2 hours ago
+        scope = events.code_push.where("created_at > ?", Time.now - 2.hours)
         scope = scope.where(:project_id => project_id) if project_id
 
         # Take only latest one

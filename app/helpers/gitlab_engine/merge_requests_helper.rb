@@ -32,5 +32,13 @@ module GitlabEngine
                                                    }
                                                    )
     end
+
+    def mr_css_classes(merge_request)
+      classes = ["merge_request"]
+      classes << "closed" if merge_request.closed?
+      classes << "merged" if merge_request.merged?
+      classes << "today" if merge_request.today?
+      classes.join(' ')
+    end
   end
 end

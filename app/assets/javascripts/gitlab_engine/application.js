@@ -15,7 +15,7 @@
 //= require bootstrap-modal
 //= require modernizr
 //= require chosen-jquery
-//= require raphael/raphael
+//= require raphael
 //= require branch-graph
 //= require_tree .
 

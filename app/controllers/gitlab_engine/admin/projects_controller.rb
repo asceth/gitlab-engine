@@ -5,7 +5,9 @@ module GitlabEngine
     before_filter :authenticate_admin!
 
     def index
-      @admin_projects = Project.page(params[:page])
+      @admin_projects = Project.scoped
+      @admin_projects = @admin_projects.search(params[:name]) if params[:name].present?
+      @admin_projects = @admin_projects.page(params[:page])
     end
 
     def show
