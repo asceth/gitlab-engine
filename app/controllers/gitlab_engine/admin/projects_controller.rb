@@ -14,9 +14,9 @@ module GitlabEngine
       @admin_project = Project.find_by_code(params[:id])
 
       @users = if @admin_project.users.empty?
-                 User
+                 ::User
                else
-                 User.not_in_project(@admin_project)
+                 ::User.not_in_project(@admin_project)
                end.all
     end
 
@@ -59,7 +59,7 @@ module GitlabEngine
       owner_id = params[:project].delete(:owner_id)
 
       if owner_id
-        @admin_project.owner = User.find(owner_id)
+        @admin_project.owner = ::User.find(owner_id)
       end
 
       if @admin_project.update_attributes(params[:project])
