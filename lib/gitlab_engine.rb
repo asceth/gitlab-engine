@@ -19,7 +19,7 @@ require "colored"
 require "drapper"
 
 require "git"
-require "graphael-rails"
+require "raphael-rails"
 require "grit"
 
 require "haml-rails"
@@ -63,5 +63,3 @@ require "gitlab_engine/redcarpet/render/gitlab_html"
 # Engage.
 #
 require "gitlab_engine/engine"
-
-
