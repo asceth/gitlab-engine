@@ -47,7 +47,7 @@ module GitlabEngine
               `git config user.name "#{user.name}"`
               `git config user.email "#{user.email}"`
               `git checkout -b #{merge_request.target_branch} origin/#{merge_request.target_branch}`
-              `git pull --no-ff origin #{merge_request.source_branch}`
+              output = `git pull --no-ff origin #{merge_request.source_branch}`
 
               # merge_repo = Grit::Repo.new('.')
               # merge_repo.git.sh "git reset --hard"
