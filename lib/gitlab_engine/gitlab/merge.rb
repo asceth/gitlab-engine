@@ -34,7 +34,7 @@ module GitlabEngine
         end
 
         Grit::Git.with_timeout(30.seconds) do
-          lock_file = File.join(Rails.root, "tmp", "merge_repo_#{project.path}.lock")
+          lock_file = File.join(Rails.root, "tmp", "merge_repo_#{project.path.gsub('/', '_')}.lock")
 
           File.open(lock_file, "w+") do |f|
             f.flock(File::LOCK_EX)
