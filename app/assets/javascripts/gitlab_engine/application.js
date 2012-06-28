@@ -6,7 +6,7 @@
 //
 //= require jquery
 //= require jquery.ui.all
-//= requrey jquery_ujs
+//= require jquery_ujs
 //= require jquery.ui.selectmenu
 //= require jquery.tagify
 //= require jquery.cookie
