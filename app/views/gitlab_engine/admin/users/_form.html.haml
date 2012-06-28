@@ -61,7 +61,7 @@
                 This user is blocked and is not able to login GitLab
             - else
               %span
-                = link_to 'Block', block_admin_user_path(@admin_user), :confirm => 'USER WILL BE BLOCKED! Are you sure?', :method => :put, :class => "btn small danger"
+                = link_to 'Block', block_admin_user_path(@admin_user), {:data => {:confirm => 'USER WILL BE BLOCKED! Are you sure?'}, :method => :put, :class => "btn small danger"}
                 Blocked user will removed from all projects &amp; will not be able to login to GitLab.
     .actions
       = f.submit 'Save', :class => "btn primary"

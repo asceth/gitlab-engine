@@ -92,7 +92,7 @@
         %td= link_to project.name, admin_project_path(project)
         %td= select_tag :tm_project_access, options_for_select(Project.access_options, tm.project_access), :class => "medium project-access-select", :disabled => :disabled
         %td= link_to 'Edit Access', edit_admin_team_member_path(tm), :class => "btn small"
-        %td= link_to 'Remove from team', admin_team_member_path(tm), :confirm => 'Are you sure?', :method => :delete, :class => "btn small danger"
+        %td= link_to 'Remove from team', admin_team_member_path(tm), {:data => {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn small danger"}
 
 :css
   form select {

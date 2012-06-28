@@ -29,7 +29,6 @@ module GitlabEngine
 
     def issue_css_classes(issue)
       classes = ["issue"]
-      classes << "critical" if issue.critical
       classes << "closed" if issue.closed
       classes << "today" if issue.today?
       classes.join(' ')

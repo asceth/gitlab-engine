@@ -46,7 +46,7 @@ module GitlabEngine
         #
         attr_accessor :force_random_password
 
-        attr_accessible :bio, :name, :projects_limit, :skype, :linkedin, :twitter, :dark_scheme,
+        attr_accessible :bio, :name, :projects_limit, :skype, :linkedin, :twitter, :dark_scheme
         attr_accessible :theme_id, :force_random_password
 
         alias_attribute :private_token, :authentication_token

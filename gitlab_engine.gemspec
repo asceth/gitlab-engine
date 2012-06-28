@@ -30,6 +30,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "drapper"
 
+  s.add_dependency "git"
+
   s.add_dependency "raphael-rails",  "1.5.2"
 
   s.add_dependency "haml-rails"

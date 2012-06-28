@@ -29,7 +29,6 @@ describe "Issues" do
 
     it "should render atom feed" do
       visit project_issues_path(project, :atom)
-
       page.response_headers['Content-Type'].should have_content("application/atom+xml")
       page.body.should have_selector("title", :text => "#{project.name} issues")
       page.body.should have_selector("author email", :text => @issue.author_email)
@@ -89,7 +88,7 @@ describe "Issues" do
         before do
           fill_in "issue_title", :with => "bug 345"
           page.execute_script("$('#issue_assignee_id').show();")
-          select @user.name, :from => "issue_assignee_id" 
+          select @user.name, :from => "issue_assignee_id"
         end
 
         it { expect { click_button "Submit new issue" }.to change {Issue.count}.by(1) }
@@ -104,7 +103,7 @@ describe "Issues" do
         end
 
         it "should call send mail" do
-          Notify.should_not_receive(:new_issue_email)
+          GitlabEngine::Notify.should_not_receive(:new_issue_email)
           click_button "Submit new issue"
         end
       end
@@ -113,7 +112,7 @@ describe "Issues" do
         before do
           fill_in "issue_title", :with => "bug 345"
           page.execute_script("$('#issue_assignee_id').show();")
-          select @user2.name, :from => "issue_assignee_id" 
+          select @user2.name, :from => "issue_assignee_id"
         end
 
         it { expect { click_button "Submit new issue" }.to change {Issue.count}.by(1) }
@@ -128,7 +127,7 @@ describe "Issues" do
         end
 
         it "should call send mail" do
-          Notify.should_receive(:new_issue_email).and_return(stub(:deliver => true))
+          GitlabEngine::Notify.should_receive(:new_issue_email).and_return(stub(:deliver => true))
           click_button "Submit new issue"
         end
 

@@ -148,10 +148,10 @@ module GitlabEngine
 
     def issues_filter
       {
-        all => "1",
-        closed => "2",
-        to_me => "3",
-        open => "0"
+        :all => "1",
+        :closed => "2",
+        :to_me => "3",
+        :open => "0"
       }
     end
   end

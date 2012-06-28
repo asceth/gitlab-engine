@@ -3,11 +3,11 @@ module GitlabEngine
     isolate_namespace GitlabEngine
 
     config.active_record.observers = [
-                                      'GitlabEngine::ActivityObserver'
-                                      'GitlabEngine::IssueObserver'
-                                      'GitlabEngine::KeyObserver'
-                                      'GitlabEngine::MailerObserver'
-                                      'GitlabEngine::ProjectObserver'
+                                      'GitlabEngine::ActivityObserver',
+                                      'GitlabEngine::IssueObserver',
+                                      'GitlabEngine::KeyObserver',
+                                      'GitlabEngine::MailerObserver',
+                                      'GitlabEngine::ProjectObserver',
                                       'GitlabEngine::UserObserver'
                                      ]
 

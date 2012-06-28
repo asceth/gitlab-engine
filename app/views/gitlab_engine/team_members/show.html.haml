@@ -52,7 +52,7 @@
   - if can? current_user, :admin_project, @project
     .form-horizontal
       .form-actions
-        = link_to 'Remove from team', gitlab_engine.project_team_member_path(:project_id => @project, :id => @team_member.id), :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger"
+        = link_to 'Remove from team', gitlab_engine.project_team_member_path(:project_id => @project, :id => @team_member.id), {:data => {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn btn-danger"}
 
 :javascript
   $(function(){
@@ -60,4 +60,3 @@
       $(this.form).submit();
     });
   })
-

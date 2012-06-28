@@ -45,12 +45,12 @@ describe Note do
     before do
       @note = Factory :note,
         :project => project,
-        :noteable_id => commit.id,
+        :commit_id => commit.id,
         :noteable_type => "Commit"
     end
 
     it "should save a valid note" do
-      @note.noteable_id.should == commit.id
+      @note.commit_id.should == commit.id
       @note.target.id.should == commit.id
     end
   end
@@ -59,13 +59,13 @@ describe Note do
     before do
       @note = Factory :note,
         :project => project,
-        :noteable_id => commit.id,
+        :commit_id => commit.id,
         :noteable_type => "Commit",
         :line_code => "0_16_1"
     end
 
     it "should save a valid note" do
-      @note.noteable_id.should == commit.id
+      @note.commit_id.should == commit.id
       @note.target.id.should == commit.id
     end
   end
@@ -78,7 +78,7 @@ describe Note do
       @u2 = Factory :user
       @u3 = Factory :user
       @abilities = Six.new
-      @abilities << Ability
+      @abilities << GitlabEngine::Ability
     end
 
     describe :read do
@@ -131,4 +131,3 @@ end
 #  attachment    :string(255)
 #  line_code     :string(255)
 #
-

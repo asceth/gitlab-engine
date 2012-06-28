@@ -35,7 +35,7 @@ module GitlabEngine
       if current_user && current_user.blocked
         sign_out current_user
         flash[:alert] = "Your account was blocked"
-        redirect_to new_user_session_path
+        redirect_to main_app.new_user_session_path
       end
     end
 
@@ -43,7 +43,7 @@ module GitlabEngine
       if resource.is_a?(User) && resource.respond_to?(:blocked) && resource.blocked
         sign_out resource
         flash[:alert] = "Your account was blocked"
-        new_user_session_path
+        main_app.new_user_session_path
       else
         super
       end

@@ -39,4 +39,4 @@
           = link_to 'Test Hook', gitlab_engine.test_project_hook_path(@project, hook), :class => "btn small right"
         %td POST
         %td
-          = link_to 'Remove', gitlab_engine.project_hook_path(@project, hook), :confirm => 'Are you sure?', :method => :delete, :class => "danger btn small right"
+          = link_to 'Remove', gitlab_engine.project_hook_path(@project, hook), {:data => {:confirm => 'Are you sure?'}, :method => :delete, :class => "danger btn small right"}

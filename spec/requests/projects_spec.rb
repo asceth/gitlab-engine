@@ -80,8 +80,8 @@ describe "Projects" do
       @project.add_access(@user, :read)
 
       visit project_team_members_path(@project,
-                              :path => ValidCommit::BLOB_FILE_PATH,
-                              :commit_id => ValidCommit::ID)
+                                      :path => ValidCommit::BLOB_FILE_PATH,
+                                      :commit_id => ValidCommit::ID)
     end
 
     it "should be correct path" do
