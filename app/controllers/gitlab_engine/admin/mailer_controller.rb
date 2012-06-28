@@ -23,7 +23,7 @@ module GitlabEngine
         render :file => 'gitlab_engine/notify/note_wall_email', :layout => 'gitlab_engine/notify'
       end
     rescue
-      render :text => "Preview not avaialble"
+      render :text => "Preview not available"
     end
 
     def preview_user_new
@@ -32,7 +32,7 @@ module GitlabEngine
 
       render :file => 'gitlab_engine/notify/new_user_email', :layout => 'gitlab_engine/notify'
     rescue
-      render :text => "Preview not avaialble"
+      render :text => "Preview not available"
     end
 
     def preview_issue_new
@@ -41,7 +41,7 @@ module GitlabEngine
       @project = @issue.project
       render :file => 'gitlab_engine/notify/new_issue_email', :layout => 'gitlab_engine/notify'
     rescue
-      render :text => "Preview not avaialble"
+      render :text => "Preview not available"
     end
   end
 end

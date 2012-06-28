@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   has_many :users,          :through => :users_projects
   has_many :events,         :dependent => :destroy
   has_many :merge_requests, :dependent => :destroy
-  has_many :issues,         :dependent => :destroy, :order => "position"
+  has_many :issues,         :dependent => :destroy, :order => "closed, position"
   has_many :milestones,     :dependent => :destroy
   has_many :users_projects, :dependent => :destroy
   has_many :notes,          :dependent => :destroy
@@ -48,7 +48,7 @@ class Project < ActiveRecord::Base
     Project.transaction do
       project.owner = user
 
-      project.save!
+      return project unless project.save
 
       # Add user as project master
       project.users_projects.create!(:project_access => UsersProject::MASTER, :user => user)
@@ -72,8 +72,8 @@ class Project < ActiveRecord::Base
   validates :path,
             :uniqueness => true,
             :presence => true,
-            :format => { :with => /^[a-zA-Z0-9_\-\.\/]*$/,
-                         :message => "only letters, digits & '_' '-' '.' '/' allowed" },
+            :format => { :with => /^[a-zA-Z][a-zA-Z0-9_\-\.\/]*$/,
+                         :message => "only letters, digits & '_' '-' '.' '/' allowed. Letter should be first." },
             :length   => { :within => 0..255 }
 
   validates :description,
@@ -82,8 +82,8 @@ class Project < ActiveRecord::Base
   validates :code,
             :presence => true,
             :uniqueness => true,
-            :format => { :with => /^[a-zA-Z0-9_\-\.]*$/,
-                         :message => "only letters, digits & '_' '-' '.' allowed"  },
+            :format => { :with => /^[a-zA-Z][a-zA-Z0-9_\-\.]*$/,
+                         :message => "only letters, digits & '_' '-' '.' allowed. Letter should be first."  },
             :length   => { :within => 1..255 }
 
   validates :owner, :presence => true
@@ -176,4 +176,3 @@ end
 #  merge_requests_enabled :boolean         default(TRUE), not null
 #  wiki_enabled           :boolean         default(TRUE), not null
 #
-

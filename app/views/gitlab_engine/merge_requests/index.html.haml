@@ -6,18 +6,6 @@
 
 %br
 
-.mrs_legend
-  .list_legend
-    .icon.today
-    .text Today
-  .list_legend
-    .icon.merged
-    .text Merged
-  .list_legend
-    .icon.closed
-    .text Closed
-.clearfix
-
 
 .ui-box
   .title
@@ -46,4 +34,3 @@
           .span7= paginate @merge_requests, :theme => "gitlab"
           .span4.right
             %span.cgray.right #{@merge_requests.total_count} merge requests for this filter
-

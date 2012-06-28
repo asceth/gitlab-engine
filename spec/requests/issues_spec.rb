@@ -89,7 +89,7 @@ describe "Issues" do
         before do
           fill_in "issue_title", :with => "bug 345"
           page.execute_script("$('#issue_assignee_id').show();")
-          select @user.name, :from => "issue_assignee_id"
+          select @user.name, :from => "issue_assignee_id" 
         end
 
         it { expect { click_button "Submit new issue" }.to change {Issue.count}.by(1) }
@@ -104,7 +104,7 @@ describe "Issues" do
         end
 
         it "should call send mail" do
-          GitlabEngine::Notify.should_not_receive(:new_issue_email)
+          Notify.should_not_receive(:new_issue_email)
           click_button "Submit new issue"
         end
       end
@@ -113,7 +113,7 @@ describe "Issues" do
         before do
           fill_in "issue_title", :with => "bug 345"
           page.execute_script("$('#issue_assignee_id').show();")
-          select @user2.name, :from => "issue_assignee_id"
+          select @user2.name, :from => "issue_assignee_id" 
         end
 
         it { expect { click_button "Submit new issue" }.to change {Issue.count}.by(1) }
@@ -128,7 +128,7 @@ describe "Issues" do
         end
 
         it "should call send mail" do
-          GitlabEngine::Notify.should_receive(:new_issue_email).and_return(stub(:deliver => true))
+          Notify.should_receive(:new_issue_email).and_return(stub(:deliver => true))
           click_button "Submit new issue"
         end
 

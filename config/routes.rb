@@ -142,6 +142,10 @@ GitlabEngine::Engine.routes.draw do
       collection do
         get :compare
       end
+
+      member do
+        get :patch
+      end
     end
     resources :team_members
     resources :milestones

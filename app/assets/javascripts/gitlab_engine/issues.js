@@ -28,7 +28,7 @@ function switchFromEditIssue(){
 
 function backToIssues(){
   $("#edit_issue_dialog, #new_issue_dialog").hide("fade", { direction: "right" }, 150, function(){
-    $(".issues_content").show("fade", { direction: "left" }, 150, function() { 
+    $(".issues_content").show("fade", { direction: "left" }, 150, function() {
       $("#edit_issue_dialog").remove();
       $("#new_issue_dialog").remove();
       $('.add_new').show();
@@ -36,7 +36,7 @@ function backToIssues(){
   });
 }
 
-function initIssuesSearch() { 
+function initIssuesSearch() {
   var href       = $('.issue_search').parent().attr('action');
   var last_terms = '';
 
@@ -59,5 +59,19 @@ function initIssuesSearch() {
 
   $('.delete-issue').live('ajax:success', function() {
     $(this).closest('tr').fadeOut(); updatePage();
+  });
+}
+
+/**
+ * Init Issues page
+ */
+function issuesPage() {
+  initIssuesSearch();
+  setSortable();
+  $("#label_name").chosen();
+  $("#assignee_id").chosen();
+  $("#milestone_id").chosen();
+  $("#milestone_id, #assignee_id, #label_name").on("change", function() {
+    $(this).closest("form").submit();
   });
 }

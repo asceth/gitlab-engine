@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.6"
 
   s.add_dependency "acts_as_list"
-  s.add_dependency "acts-as-taggable-on", "~> 2.1.0"
+  s.add_dependency "acts-as-taggable-on", "2.3.1"
 
   s.add_dependency 'bootstrap-sass', "2.0.3.1"
 

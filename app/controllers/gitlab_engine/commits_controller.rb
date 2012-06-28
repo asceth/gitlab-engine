@@ -63,5 +63,14 @@ module GitlabEngine
         @commit = Commit.new(older)
       end
     end
+
+    def patch
+      @commit = project.commit(params[:id])
+
+      send_data(@commit.to_patch,
+                :type => "text/plain",
+                :disposition => 'attachment',
+                :filename => (@commit.id.to_s + ".patch"))
+    end
   end
 end

@@ -51,7 +51,7 @@ describe Project do
 
   it "should return path to repo" do
     project = Project.new(:path => "somewhere")
-    project.path_to_repo.should == File.join(Rails.root, '..', '..', '..', "somewhere")
+    project.path_to_repo.should == File.join(Rails.root, "tmp", "tests", "somewhere")
   end
 
   it "returns the full web URL for this repo" do
@@ -94,14 +94,14 @@ describe Project do
     let(:project) { Factory :project }
 
     subject do
-      commits = project.commits_between("211ef121f81ded2a7ea6aab81999ee51a47f8e03",
-                                        "4d7159d76dc1157b1ec916b30d2294eca675f882")
+      commits = project.commits_between("3a4b4fb4cde7809f033822a171b9feae19d41fff",
+                                        "8470d70da67355c9c009e4401746b1d5410af2e3")
       commits.map { |c| c.id }
     end
 
-    it { should have(2).elements }
-    it { should include("daf52186019beb8df0a92ceb797a933f74dd7177") }
-    it { should_not include("de242af0f3e76187a78f8deb9852a4c19c4c6c65") }
+    it { should have(3).elements }
+    it { should include("f0f14c8eaba69ebddd766498a9d0b0e79becd633") }
+    it { should_not include("bcf03b5de6c33f3869ef70d68cf06e679d1d7f9a") }
   end
 
   describe "Git methods" do
@@ -161,7 +161,7 @@ describe Project do
     end
   end
 
-  describe :update_merge_requests do
+  describe :update_merge_requests do 
     let(:project) { Factory :project }
 
     before do
@@ -181,7 +181,7 @@ describe Project do
       @merge_request.closed.should be_true
     end
 
-    it "should update merge request commits with new one if pushed to source branch" do
+    it "should update merge request commits with new one if pushed to source branch" do 
       @merge_request.last_commit.should == nil
       project.update_merge_requests("8716fc78f3c65bbf7bcf7b574febd583bc5d2812", "bcf03b5de6c33f3869ef70d68cf06e679d1d7f9a", "refs/heads/master", @key.user)
       @merge_request.reload

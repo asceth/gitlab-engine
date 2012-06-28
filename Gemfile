@@ -58,6 +58,8 @@ group :test do
 
   gem 'minitest', ">= 2.10"
 
+  gem 'resque_spec'
+
   gem "simplecov", :require => false
   gem "shoulda-matchers"
 

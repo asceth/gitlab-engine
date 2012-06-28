@@ -37,9 +37,11 @@
     = image_tag gravatar_icon(@issue.author_email), :width => 16, :class => "lil_av"
     %strong.author= link_to_issue_author(@issue)
 
-    %cite.cgray and currently assigned to
-    = image_tag gravatar_icon(@issue.assignee_email), :width => 16, :class => "lil_av"
-    %strong.author= link_to_issue_assignee(@issue)
+    - if @issue.assignee
+      %cite.cgray and currently assigned to
+      = image_tag gravatar_icon(@issue.assignee_email), :width => 16, :class => "lil_av"
+      %strong.author= link_to_issue_assignee(@issue)
+
 
     - if @issue.milestone
       - milestone = @issue.milestone
@@ -47,6 +49,13 @@
       = link_to gitlab_engine.project_milestone_path(milestone.project, milestone) do
         %strong
           = truncate(milestone.title, :length => 20)
+
+    .right
+      - @issues.labels.each do |label|
+        %span.label.label-issue
+          %i.icon-tag
+          = label.name
+        %nbsp;
 
   - if @issue.description.present?
     .bottom_box_content

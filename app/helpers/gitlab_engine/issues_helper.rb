@@ -34,5 +34,9 @@ module GitlabEngine
       classes << "today" if issue.today?
       classes.join(' ')
     end
+
+    def issue_tags
+      @project.issues.tag_counts_on(:labels).map(&:name)
+    end
   end
 end

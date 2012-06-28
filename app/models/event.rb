@@ -108,18 +108,3 @@ class Event < ActiveRecord::Base
   delegate :title, :to => :issue, :prefix => true, :allow_nil => true
   delegate :title, :to => :merge_request, :prefix => true, :allow_nil => true
 end
-# == Schema Information
-#
-# Table name: events
-#
-#  id          :integer         not null, primary key
-#  target_type :string(255)
-#  target_id   :integer
-#  title       :string(255)
-#  data        :text
-#  project_id  :integer
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  action      :integer
-#
-

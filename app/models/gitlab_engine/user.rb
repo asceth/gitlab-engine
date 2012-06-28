@@ -44,7 +44,10 @@ module GitlabEngine
         #
         # Attributes
         #
-        attr_accessible :bio, :name, :projects_limit, :skype, :linkedin, :twitter, :dark_scheme, :theme_id
+        attr_accessor :force_random_password
+
+        attr_accessible :bio, :name, :projects_limit, :skype, :linkedin, :twitter, :dark_scheme,
+        attr_accessible :theme_id, :force_random_password
 
         alias_attribute :private_token, :authentication_token
 
@@ -53,6 +56,8 @@ module GitlabEngine
         # Callbacks
         #
         before_save :ensure_authentication_token
+
+        before_validation :generate_password, :on => :create
 
       end # end class_eval
 
@@ -106,6 +111,12 @@ module GitlabEngine
     # AccountMethods
     #
     module AccountMethods
+      def generate_password
+        if self.force_random_password
+          self.password = self.password_confirmation = Devise.friendly_token.first(8)
+        end
+      end
+
       def identifier
         email.gsub /[@.]/, "_"
       end
@@ -166,4 +177,3 @@ module GitlabEngine
 
   end
 end
-
