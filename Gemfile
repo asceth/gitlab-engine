@@ -18,6 +18,7 @@ gem 'devise', '2.1.0'
 
 
 group :assets do
+  gem 'uglifier'
   # in gemspec
   #
   # bootstrap-sass

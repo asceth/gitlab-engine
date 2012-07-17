@@ -1,5 +1,5 @@
 def api_prefix
-  "/api/#{GitlabEngine::Gitlab::API::VERSION}"
+  "/api/#{GitlabEngine::API::VERSION}"
 end
 
 def json_response

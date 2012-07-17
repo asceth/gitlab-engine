@@ -1,5 +1,7 @@
+require 'settingslogic'
+
 module GitlabEngine
-  class Settings < Settingslogic
+  class Settings < ::Settingslogic
     source "#{Rails.root}/config/gitlab.yml"
 
     class << self

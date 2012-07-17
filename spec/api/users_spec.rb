@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Gitlab::API do
+describe GitlabEngine::API do
   let(:user) { Factory :user }
 
   describe "GET /users" do

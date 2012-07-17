@@ -27,7 +27,7 @@ $(document).ready(function(){
   });
 
   $('body').on('ajax:complete, ajax:beforeSend, submit', 'form', function (e) {
-    var buttons = $('[type=submit"]', this);
+    var buttons = $('[type="submit"]', this);
     switch (e.type) {
     case 'ajax:beforeSend':
     case 'submit':

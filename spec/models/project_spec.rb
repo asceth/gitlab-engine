@@ -83,19 +83,21 @@ describe Project do
   end
 
   describe "fresh commits" do
-    let(:project) { Factory :project }
+    Issue.observers.enable 'GitlabEngine::IssueObserver' do
+      let(:project) { Factory :project }
+    end
 
     it { project.fresh_commits(3).count.should == 3 }
-    it { project.fresh_commits.first.id.should == "bcf03b5de6c33f3869ef70d68cf06e679d1d7f9a" }
-    it { project.fresh_commits.last.id.should == "f403da73f5e62794a0447aca879360494b08f678" }
+    it { project.fresh_commits.first.id.should == "a0c48be6381e8f126d471ab58559e9141ab65692" }
+    it { project.fresh_commits.last.id.should == "c4f7d65274fc151774702cee2ad9c10b28cf742f" }
   end
 
   describe "commits_between" do
     let(:project) { Factory :project }
 
     subject do
-      commits = project.commits_between("3a4b4fb4cde7809f033822a171b9feae19d41fff",
-                                        "8470d70da67355c9c009e4401746b1d5410af2e3")
+      commits = project.commits_between("a0c48be6381e8f126d471ab58559e9141ab65692",
+                                        "c4f7d65274fc151774702cee2ad9c10b28cf742f")
       commits.map { |c| c.id }
     end
 

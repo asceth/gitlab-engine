@@ -15,7 +15,7 @@
 
   - if @project.issues_enabled
     %li{:class => tab_class(:issues)}
-      = link_to  gitlab_engine.project_issues_filter_path(@project)  do
+      = link_to  gitlab_engine.project_issues_path(@project)  do
         Issues
         %span.count.issue_counter= @project.issues.opened.count
 

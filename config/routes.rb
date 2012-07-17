@@ -5,7 +5,7 @@ GitlabEngine::Engine.routes.draw do
   get 'search' => "search#show"
 
   # API
-  require 'api'
+  require 'gitlab_engine/api'
   mount GitlabEngine::API => '/api'
 
   # Enable Grack support
@@ -176,6 +176,7 @@ GitlabEngine::Engine.routes.draw do
     resources :milestones
     resources :issues do
       collection do
+        get   :filter
         post  :sort
         get   :search
       end
