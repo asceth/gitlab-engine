@@ -23,7 +23,7 @@
 
   .actions
     = f.submit 'Save', :class => "primary btn"
-    = link_to "Cancel", project_snippets_path(@project), :class => " btn"
+    = link_to "Cancel", gitlab_engine.project_snippets_path(@project), :class => " btn"
     - unless @snippet.new_record?
       .right= link_to 'Destroy', [@project, @snippet], {:data => {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn right danger delete-snippet", :id => "destroy_snippet_#{@snippet.id}"}
 

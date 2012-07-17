@@ -1,8 +1,8 @@
-= render "projects/project_head"
+= render "gitlab_engine/projects/project_head"
 
 - if can? current_user, :write_snippet, @project
   .alert-message.block-message
-    = link_to new_project_snippet_path(@project), :class => "btn small add_new right", :title => "New Snippet" do
+    = link_to gitlab_engine.new_project_snippet_path(@project), :class => "btn small add_new right", :title => "New Snippet" do
       Add new snippet
     Share code pastes with others if it cant be in a git repository
     %br

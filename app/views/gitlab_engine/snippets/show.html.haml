@@ -1,10 +1,10 @@
-= render "projects/project_head"
+= render "gitlab_engine/projects/project_head"
 
 %h3
   = @snippet.title
   %small= @snippet.file_name
   - if can?(current_user, :admin_snippet, @project) || @snippet.author == current_user
-    = link_to "Edit", edit_project_snippet_path(@project, @snippet), :class => "btn small right"
+    = link_to "Edit", gitlab_engine.edit_project_snippet_path(@project, @snippet), :class => "btn small right"
 
 %br
 .file_holder
@@ -17,4 +17,4 @@
     %div{:class => current_user.dark_scheme ? "black" : ""}
       = raw @snippet.colorize(options: { linenos: 'True'})
 
-= render "notes/notes", :tid => @snippet.id, :tt => "snippet"
+= render "gitlab_engine/notes/notes", :tid => @snippet.id, :tt => "snippet"
