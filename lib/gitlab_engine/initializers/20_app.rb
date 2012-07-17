@@ -1,6 +1,7 @@
 module GitlabEngine
   module Gitlab
-    Version = File.read(Rails.root.join("VERSION"))
+    path = File.dirname(File.expand_path(__FILE__))
+    Version = File.read("#{path}/../../../VERSION")
     Revision = `git log --pretty=format:'%h' -n 1`
 
     def self.config
