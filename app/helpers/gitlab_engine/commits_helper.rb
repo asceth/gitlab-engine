@@ -37,7 +37,7 @@ module GitlabEngine
       line_new = 1
       type = nil
 
-      lines_arr = ::Gitlab::InlineDiff.processing diff_arr
+      lines_arr = ::GitlabEngine::Gitlab::InlineDiff.processing diff_arr
       lines_arr.each do |line|
         next if line.match(/^\-\-\- \/dev\/null/)
         next if line.match(/^\+\+\+ \/dev\/null/)
@@ -45,7 +45,7 @@ module GitlabEngine
         next if line.match(/^\+\+\+ b/)
 
         full_line = html_escape(line.gsub(/\n/, ''))
-        full_line = ::Gitlab::InlineDiff.replace_markers full_line
+        full_line = ::GitlabEngine::Gitlab::InlineDiff.replace_markers full_line
 
         if line.match(/^@@ -/)
           type = "match"

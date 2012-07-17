@@ -46,7 +46,6 @@ describe GitlabEngine::API do
       get "#{api_prefix}/projects/#{project.code}/repository/tags?private_token=#{user.private_token}"
       response.status.should == 200
       json_response.should be_an Array
-      STDERR.puts json_response.inspect
       json_response.first['name'].should == project.repo.tags.sort_by(&:name).reverse.first.name
     end
   end

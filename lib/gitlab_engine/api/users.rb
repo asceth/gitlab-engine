@@ -9,7 +9,7 @@ module GitlabEngine
       # Example Request:
       #  GET /users
       get do
-        @users = User.all
+        @users = ::User.all
         present @users, :with => Entities::User
       end
 
@@ -20,7 +20,7 @@ module GitlabEngine
       # Example Request:
       #   GET /users/:id
       get ":id" do
-        @user = User.find(params[:id])
+        @user = ::User.find(params[:id])
         present @user, :with => Entities::User
       end
     end

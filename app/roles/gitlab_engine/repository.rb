@@ -142,13 +142,13 @@ module GitlabEngine
 
       file_path
     end
-  end
 
-  def ssh_url_to_repo
-    url_to_repo
-  end
+    def ssh_url_to_repo
+      url_to_repo
+    end
 
-  def http_url_to_repo
-    http_url = [GitlabEngine::Gitlab.config.url, "/", path, ".git"].join()
+    def http_url_to_repo
+      http_url = [GitlabEngine::Gitlab.config.url, "/", path, ".git"].join()
+    end
   end
 end

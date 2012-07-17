@@ -144,6 +144,7 @@ GitlabEngine::Engine.routes.draw do
         get :diffs
         get :automerge
         get :automerge_check
+        get :raw
       end
 
       collection do

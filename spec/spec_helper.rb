@@ -68,7 +68,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
 
     WebMock.disable_net_connect!(allow_localhost: true)
-    ActiveRecord::Base.observers.disable :all
+    #ActiveRecord::Base.observers.disable :all
   end
 
   config.after(:each) do

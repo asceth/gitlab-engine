@@ -91,7 +91,13 @@ describe "Issues" do
           select @user.name, :from => "issue_assignee_id"
         end
 
-        it { expect { click_button "Submit new issue" }.to change {Issue.count}.by(1) }
+        it do
+          expect do
+            click_button "Submit new issue"
+          end.to change do
+            Issue.count
+          end.by(1)
+        end
 
         it "should add new issue to table" do
           click_button "Submit new issue"

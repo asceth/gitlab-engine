@@ -41,7 +41,7 @@ Factory.add(:merge_request, MergeRequest) do |obj|
   obj.author = Factory :user
   obj.assignee = Factory :user
   obj.source_branch = "master"
-  obj.target_branch = "stable"
+  obj.target_branch = "test"
   obj.closed = false
 end
 
