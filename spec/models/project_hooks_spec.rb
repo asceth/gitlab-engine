@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe Project, "Hooks" do
   let(:project) { Factory :project }
-  before do 
+  before do
     @key = Factory :key, :user => project.owner
     @user = @key.user
     @key_id = @key.identifier
   end
 
-  describe "Post Receive Event" do 
-    it "should create push event" do 
+  describe "Post Receive Event" do
+    it "should create push event" do
       oldrev, newrev, ref = '00000000000000000000000000000000', 'newrev', 'refs/heads/master'
       project.observe_push(oldrev, newrev, ref, @user)
       event = Event.last
@@ -106,7 +106,7 @@ describe Project, "Hooks" do
           it { should include(id: @commit.id) }
           it { should include(message: @commit.safe_message) }
           it { should include(timestamp: @commit.date.xmlschema) }
-          it { should include(url: "http://localhost/#{project.code}/commits/#{@commit.id}") }
+          it { should include(url: "#{GitlabEngine::Gitlab.config.url}/#{project.code}/commits/#{@commit.id}") }
 
           context "with a author" do
             subject { @data[:commits].first[:author] }

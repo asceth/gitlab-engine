@@ -1,30 +1,30 @@
-/** 
+/**
  * MR form
  *
  */
 
-.mr_branch_box { 
+.mr_branch_box {
   @extend .ui-box;
   margin-bottom:20px;
 
-  .body { 
+  .body {
     background:#f1f1f1;
   }
 
-  .commit { 
+  .commit {
     margin:0;
     padding:0;
     padding: 5px;
     margin-bottom: 5px;
 
-    .committed_ago { 
+    .committed_ago {
       display:none;
     }
-    .browse_code_link_holder { 
+    .browse_code_link_holder {
       display:none;
     }
     list-style:none;
-    &:hover { 
+    &:hover {
       background:none;
     }
   }
@@ -34,19 +34,19 @@
  * MR -> show: Automerge widget
  *
  */
-.automerge_widget { 
-  &.can_be_merged { 
+.automerge_widget {
+  &.can_be_merged {
     background: #DFF0D8;
   }
 
-  form { 
+  form {
     margin-bottom:0;
-    .clearfix { 
+    .clearfix {
       margin-bottom:0;
     }
   }
 
-  .accept_group { 
+  .accept_group {
     float:left;
     border: 1px solid #ADA;
     padding: 2px;
@@ -54,21 +54,43 @@
     border-radius: 5px;
     background: #CEB;
 
-    .accept_merge_request { 
+    .accept_merge_request {
       float:left;
     }
-    .remove_branch_holder { 
+    .remove_branch_holder {
       margin-left:20px;
       margin-right:10px;
       float:left;
     }
-    label { 
+    label {
       color:#444;
     }
   }
 
 
-  .how_to_merge_link { 
+  .how_to_merge_link {
     @extend .primary;
+  }
+}
+
+.mr_nav_tabs {
+  li {
+    a {
+      font-weight:bold;
+      padding:8px 20px;
+      text-align:center;
+    }
+  }
+}
+
+li.merge_request {
+  padding:7px 10px;
+  img.avatar {
+    width: 32px;
+    margin-top: 4px;
+  }
+  p {
+    padding: 0px;
+    padding-bottom: 2px;
   }
 }

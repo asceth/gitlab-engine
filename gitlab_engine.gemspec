@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "drapper"
 
   s.add_dependency "git"
+  s.add_dependency "grape", '0.2.0'
 
   s.add_dependency "raphael-rails",  "1.5.2"
 
@@ -49,6 +50,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'resque_mailer'
 
   s.add_dependency "sass-rails", "~> 3.2.5"
+  s.add_dependency "settingslogic", '2.0.8'
   s.add_dependency "six"
   s.add_dependency "stamp"
+
+  s.add_dependency "tabs_on_rails", '2.1.1'
 end

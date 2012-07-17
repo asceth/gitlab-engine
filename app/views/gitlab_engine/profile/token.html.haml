@@ -1,4 +1,4 @@
-%h3
+%h3.page_title
   Private token
   %span.cred.right
     keep it in secret!
@@ -18,5 +18,3 @@
       = f.submit 'Reset', {:data => {:confirm => "Are you sure?"}, :class => "btn"}
     - else
       = f.submit 'Generate', :class => "btn primary"
-
-

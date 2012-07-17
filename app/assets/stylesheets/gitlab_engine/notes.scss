@@ -2,7 +2,7 @@
  * Notes
  *
  */
-#notes-list, 
+#notes-list,
 #new_notes_list {
   display:block;
   list-style:none;
@@ -10,7 +10,7 @@
   padding:0px;
 }
 
-#new_notes_list li:last-child{ 
+#new_notes_list li:last-child{
   border-bottom:1px solid #aaa;
 }
 
@@ -37,8 +37,8 @@
   }
 }
 
-.note .delete-note { 
-  display:none; 
+.note .delete-note {
+  display:none;
   float:right;
 }
 .note:hover .delete-note { display:block; }
@@ -61,25 +61,31 @@ p.notify_controls span{
   font-weight: 700;
 }
 
-tr.line_notes_row { 
+tr.line_notes_row {
   border-bottom:1px solid #DDD;
-  &.reply { 
+  border-left: 7px solid #2A79A3;
+
+  &.reply {
     background:#eee;
 
-    td { 
+    border-left: 7px solid #2A79A3;
+    border-top:1px solid #ddd;
+
+    td {
       padding:7px 10px;
     }
-    a.line_note_reply_link { 
+    a.line_note_reply_link {
       @include round-borders-all(4px);
-      border-color:#aaa;
-      background: #bbb;
-      padding: 3px 20px;
+      padding: 3px 10px;
+      margin-left:5px;
       color: white;
+      background: #2A79A3;
+      border-color: #2A79A3;
     }
   }
-  ul { 
+  ul {
     margin:0;
-    li { 
+    li {
       padding:0;
       border:none;
     }
@@ -88,16 +94,19 @@ tr.line_notes_row {
 
 .line_notes_row,  .per_line_form { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-.per_line_form { 
+.per_line_form {
   background:#f5f5f5;
   border-top:1px solid #eee;
   form {  margin: 0; }
-  td { 
+  td {
     border-bottom:1px solid #ddd;
+  }
+  .actions {
+    margin:0;
   }
 }
 
-td .line_note_link { 
+td .line_note_link {
   position:absolute;
   margin-left:-70px;
   margin-top:-10px;
@@ -109,14 +118,14 @@ td .line_note_link {
   opacity: 0.0;
   filter: alpha(opacity=0);
 
-  &:hover { 
+  &:hover {
     opacity: 1.0;
     filter: alpha(opacity=100);
   }
 }
 
 .diff_file_content tr.line_holder:hover > td { background: $hover !important; }
-.diff_file_content tr.line_holder:hover > td .line_note_link { 
+.diff_file_content tr.line_holder:hover > td .line_note_link {
   opacity: 1.0;
   filter: alpha(opacity=100);
 }

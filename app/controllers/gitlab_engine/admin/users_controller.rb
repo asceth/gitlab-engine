@@ -35,7 +35,7 @@ module GitlabEngine
 
 
     def new
-      @admin_user = ::User.new(:projects_limit => 10)
+      @admin_user = ::User.new(:projects_limit => GitlabEngine::Gitlab.config.default_projects_limit)
     end
 
     def edit

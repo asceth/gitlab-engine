@@ -74,7 +74,7 @@ module GitlabEngine
           id: commit.id,
           message: commit.safe_message,
           timestamp: commit.date.xmlschema,
-          url: "http://#{GIT_HOST['host']}/#{code}/commits/#{commit.id}",
+          url: "#{GitlabEngine::Gitlab.config.url}/#{code}/commits/#{commit.id}",
           author: {
             name: commit.author_name,
             email: commit.author_email
@@ -87,12 +87,10 @@ module GitlabEngine
 
 
     # This method will be called after each post receive
-    # and only if autor_key_id present in gitlab.
+    # and only if user present in gitlab.
     # All callbacks for post receive should be placed here
     #
-    def trigger_post_receive(oldrev, newrev, ref, author_key_id)
-      user = Key.find_by_identifier(author_key_id).user
-
+    def trigger_post_receive(oldrev, newrev, ref, user)
       # Create push event
       self.observe_push(oldrev, newrev, ref, user)
 
@@ -107,4 +105,3 @@ module GitlabEngine
     end
   end
 end
-

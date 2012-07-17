@@ -1,6 +1,8 @@
 class MergeRequest < ActiveRecord::Base
   include GitlabEngine::Upvote
 
+  BROKEN_DIFF = "--broken-diff"
+
   UNCHECKED = 1
   CAN_BE_MERGED = 2
   CANNOT_BE_MERGED = 3
@@ -18,7 +20,6 @@ class MergeRequest < ActiveRecord::Base
                 :should_remove_source_branch
 
   validates_presence_of :project_id
-  validates_presence_of :assignee_id
   validates_presence_of :author_id
   validates_presence_of :source_branch
   validates_presence_of :target_branch
@@ -32,6 +33,7 @@ class MergeRequest < ActiveRecord::Base
   delegate :name,
            :email,
            :to => :assignee,
+           :allow_nil => true,
            :prefix => true
 
   validates :title,
@@ -106,14 +108,24 @@ class MergeRequest < ActiveRecord::Base
   def reloaded_diffs
     if open? && unmerged_diffs.any?
       self.st_diffs = unmerged_diffs
-      save
+      self.save
     end
-    diffs
+  rescue Grit::Git::GitTimeout
+    self.st_diffs = [BROKEN_DIFF]
+    self.save
+  end
+
+  def broken_diffs?
+    diffs == [BROKEN_DIFF]
+  end
+
+  def valid_diffs?
+    !broken_diffs?
   end
 
   def unmerged_diffs
     commits = project.repo.commits_between(target_branch, source_branch).map {|c| Commit.new(c)}
-    diffs = project.repo.diff(commits.first.prev_commit.id, commits.last.id) rescue []
+    diffs = project.repo.diff(commits.first.prev_commit.id, commits.last.id)
   end
 
   def last_commit
@@ -191,6 +203,19 @@ class MergeRequest < ActiveRecord::Base
     self.mark_as_unmergable
     false
   end
+
+  def to_raw
+    FileUtils.mkdir_p(Rails.root.join("tmp", "patches"))
+    patch_path = Rails.root.join("tmp", "patches", "merge_request_#{self.id}.patch")
+
+    from = commits.last.id
+    to = source_branch
+
+    patch = project.repo.git.run('', "format-patch", {}, ["#{from}..#{to}", "--stdout"])
+
+    File.open(patch_path) {|f| f.write(patch) }
+    patch_path
+  end
 end
 # == Schema Information
 #
@@ -207,4 +232,3 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #
-

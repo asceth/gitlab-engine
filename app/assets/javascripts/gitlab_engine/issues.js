@@ -51,7 +51,6 @@ function initIssuesSearch() {
       if (terms.length >= 2 || terms.length == 0) {
         $.get(href, { 'f': status, 'terms': terms, 'milestone_id': milestone_id }, function(response) {
           $('#issues-table').html(response);
-          setSortable();
         });
       }
     }
@@ -67,7 +66,6 @@ function initIssuesSearch() {
  */
 function issuesPage() {
   initIssuesSearch();
-  setSortable();
   $("#label_name").chosen();
   $("#assignee_id").chosen();
   $("#milestone_id").chosen();
@@ -75,3 +73,25 @@ function issuesPage() {
     $(this).closest("form").submit();
   });
 }
+
+$('body').on('ajax:success', '.close_issue, .reopen_issue, #new_issue', function () {
+  var t = $(this);
+  var totalIssues;
+  var reopen = t.hasClass('reopen_issue');
+  var newIssue = false;
+
+  if (this.id == 'new_issue') {
+    newIssue = true;
+  }
+
+  $('.issue_counter, #new_issue').each(function () {
+    var issue = $(this);
+    totalIssues = parseInt($(this).html(), 10);
+
+    if (newIssue || (reopen && issue.closest('.main_menu').length)) {
+     $(this).html(totalIssues + 1);
+    } else {
+     $(this).html(totalIssues - 1);
+    }
+  });
+});

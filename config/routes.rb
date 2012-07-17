@@ -4,12 +4,25 @@ GitlabEngine::Engine.routes.draw do
   #
   get 'search' => "search#show"
 
+  # API
+  require 'api'
+  mount GitlabEngine::API => '/api'
+
+  # Enable Grack support
+  mount Grack::Bundle.new({
+    git_path:     GitlabEngine::Gitlab.config.git_bin_path,
+    project_root: GitlabEngine::Gitlab.config.git_base_path,
+    upload_pack:  GitlabEngine::Gitlab.config.git_upload_pack,
+    receive_pack: GitlabEngine::Gitlab.config.git_receive_pack
+  }), at: '/:path', constraints: { path: /[\w-]+\.git/ }
+
   #
   # Help
   #
   get 'help' => 'help#index'
   get 'help/permissions' => 'help#permissions'
   get 'help/workflow' => 'help#workflow'
+  get 'help/api' => 'help#api'
   get 'help/web_hooks' => 'help#web_hooks'
 
   #
@@ -45,6 +58,9 @@ GitlabEngine::Engine.routes.draw do
     get 'mailer/preview_note'
     get 'mailer/preview_user_new'
     get 'mailer/preview_issue_new'
+
+    resource :logs
+    resource :resque, :controller => 'resque'
     root :to => "dashboard#index"
   end
 
@@ -89,6 +105,7 @@ GitlabEngine::Engine.routes.draw do
 
       member do
         get "tree", :constraints => { :id => /[a-zA-Z.\/0-9_\-]+/ }
+        get "logs_tree", :constraints => { :id => /[a-zA-Z.\/0-9_\-]+/ }
         get "blob",
           :constraints => {
             :id => /[a-zA-Z.0-9\/_\-]+/,
@@ -99,6 +116,14 @@ GitlabEngine::Engine.routes.draw do
         # tree viewer
         get "tree/:path" => "refs#tree",
           :as => :tree_file,
+          :constraints => {
+            :id => /[a-zA-Z.0-9\/_\-]+/,
+            :path => /.*/
+          }
+
+        # tree viewer
+        get "logs_tree/:path" => "refs#logs_tree",
+          :as => :logs_file,
           :constraints => {
             :id => /[a-zA-Z.0-9\/_\-]+/,
             :path => /.*/

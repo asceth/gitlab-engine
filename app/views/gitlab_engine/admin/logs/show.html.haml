@@ -1,0 +1,9 @@
+.file_holder#README
+  .file_title
+    %i.icon-file
+    githost.log
+  .file_content.logs
+    %ol
+      - Gitlab::Logger.read_latest.each do |line|
+        %li
+          %p= line

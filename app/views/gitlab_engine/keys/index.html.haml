@@ -1,8 +1,9 @@
-%h3
+%h3.page_title
   SSH Keys
   = link_to "Add new", gitlab_engine.new_key_path, :class => "btn small right"
 
-%br
+%hr
+%p.slead SSH key allows you to establish a secure connection between your computer and Gitlab
 
 %table#keys-table.admin-table
   %thead
@@ -16,4 +17,3 @@
     %tr
       %td{:colspan => 3}
         %h3.nothing_here_message There are no SSH keys with access to your account.
-

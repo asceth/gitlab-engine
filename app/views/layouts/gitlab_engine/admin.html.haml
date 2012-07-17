@@ -5,11 +5,17 @@
     = render "layouts/gitlab_engine/flash"
     = render "layouts/gitlab_engine/head_panel", :title => "Admin area"
     .container
-      %nav.main_menu
-        = link_to "Stats", gitlab_engine.admin_root_path, :class => "home #{controller.controller_name == "dashboard" ? "current" : nil}"
-        = link_to "Projects", gitlab_engine.admin_projects_path, :class => controller.controller_name == "projects" ? "current" : nil
-        = link_to "Users", gitlab_engine.admin_users_path, :class => controller.controller_name == "users" ? "current" : nil
-        = link_to "Emails", gitlab_engine.admin_emails_path, :class => controller.controller_name == "mailer" ? "current" : nil
-        = link_to "Resque", "/info/resque"
-
+      %ul.main_menu
+        %li.home{:class => tab_class(:admin_root)}
+          = link_to "Stats", gitlab_engine.admin_root_path
+        %li{:class => tab_class(:admin_projects)}
+          = link_to "Projects", gitlab_engine.admin_projects_path
+        %li{:class => tab_class(:admin_users)}
+          = link_to "Users", gitlab_engine.admin_users_path
+        %li{:class => tab_class(:admin_logs)}
+          = link_to "Logs", gitlab_engine.admin_logs_path
+        %li{:class => tab_class(:admin_emails)}
+          = link_to "Emails", gitlab_engine.admin_emails_path
+        %li{:class => tab_class(:admin_resque)}
+          = link_to "Resque", gitlab_engine.admin_resque_path
       .content= yield

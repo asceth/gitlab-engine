@@ -1,0 +1,8 @@
+- if @merge_request.valid_diffs?
+  = render "gitlab_engine/commits/diffs", :diffs => @diffs
+- elsif @merge_request.broken_diffs?
+  %h4.nothing_here_message
+    Can't load diff.
+    You can #{link_to "download MR patch", gitlab_engine.raw_project_merge_request_path(@project, @merge_request), :class => "vlink"} instead.
+- else
+  %h4.nothing_here_message Nothing to merge

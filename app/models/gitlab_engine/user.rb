@@ -96,7 +96,8 @@ module GitlabEngine
                               :name => name,
                               :email => email,
                               :password => password,
-                              :password_confirmation => password
+                              :password_confirmation => password,
+                              :projects_limit => GitlabEngine::Gitlab.config.default_projects_limit
                               )
         end
       end

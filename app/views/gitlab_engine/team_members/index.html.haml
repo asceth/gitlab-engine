@@ -1,5 +1,5 @@
 = render "gitlab_engine/projects/project_head"
-%h3
+%h3.page_title
   Team Members
   %small (#{@project.users_projects.count})
 
@@ -9,9 +9,6 @@
       New Team Member
     Read more about project permissions
     %strong= link_to "here", gitlab_engine.help_permissions_path, :class => "vlink"
-    %br
-    To open team member profile - click on avatar.
 
 
 = render :partial => "gitlab_engine/team_members/team", :locals => {:project => @project}
-

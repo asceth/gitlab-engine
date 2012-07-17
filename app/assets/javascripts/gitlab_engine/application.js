@@ -12,6 +12,7 @@
 //= require jquery.cookie
 //= require jquery.endless-scroll
 //= require jquery.highlight
+//= require jquery.waitforimages
 //= require bootstrap-modal
 //= require modernizr
 //= require chosen-jquery
@@ -20,8 +21,23 @@
 //= require_tree .
 
 $(document).ready(function(){
+
   $(".one_click_select").live("click", function(){
     $(this).select();
+  });
+
+  $('body').on('ajax:complete, ajax:beforeSend, submit', 'form', function (e) {
+    var buttons = $('[type=submit"]', this);
+    switch (e.type) {
+    case 'ajax:beforeSend':
+    case 'submit':
+      buttons.attr('disabled', 'disabled');
+      break;
+    case 'ajax:complete':
+    default:
+      buttons.removeAttr('disabled');
+      break;
+    }
   });
 
   $(".account-box").mouseenter(showMenu);
@@ -93,3 +109,7 @@ function slugify(text) {
             return _chosen.apply(this, [default_options]);
     }})
 })(jQuery);
+
+function ajaxGet(url) {
+  $.ajax({type: "GET", url: url, dataType: "script"});
+}

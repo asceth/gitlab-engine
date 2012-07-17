@@ -1,4 +1,6 @@
 module GitlabEngine
+  extend self
+
   module Color
     def colorize(text, color_code)
       "\033[#{color_code}#{text}\033[0m"

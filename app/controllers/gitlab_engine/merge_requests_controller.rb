@@ -3,7 +3,9 @@ module GitlabEngine
     before_filter :authenticate_user!
     before_filter :project
     before_filter :module_enabled
-    before_filter :merge_request, :only => [:edit, :update, :destroy, :show, :commits, :diffs, :automerge, :automerge_check]
+    before_filter :merge_request, :only => [:edit, :update, :destroy, :show, :commits, :diffs, :automerge, :automerge_check, :raw]
+    before_filter :validates_merge_request, :only => [:show, :diffs, :raw]
+    before_filter :define_show_vars, :only => [:show, :diffs]
     layout "gitlab_engine/project"
 
     # Authorize
@@ -35,24 +37,14 @@ module GitlabEngine
     end
 
     def show
-      # Show git not found page if target branch doesnt exist
-      return git_not_found! unless @project.repo.heads.map(&:name).include?(@merge_request.target_branch)
-
-      # Show git not found page if source branch doesnt exist
-      # and there is no saved commits between source & target branch
-      return git_not_found! if !@project.repo.heads.map(&:name).include?(@merge_request.source_branch) && @merge_request.commits.blank?
-
-      # Build a note object for comment form
-      @note = @project.notes.new(:noteable => @merge_request)
-
-      # Get commits from repository
-      # or from cache if already merged
-      @commits = @merge_request.commits
-
       respond_to do |format|
         format.html
         format.js
       end
+    end
+
+    def raw
+      send_file @merge_request.to_raw
     end
 
     def diffs
@@ -142,6 +134,24 @@ module GitlabEngine
 
     def module_enabled
       return render_404 unless @project.merge_requests_enabled
+    end
+
+    def validates_merge_request
+      # Show git not found page if target branch doesnt exist
+      return git_not_found! unless @project.repo.heads.map(&:name).include?(@merge_request.target_branch)
+
+      # Show git not found page if source branch doesnt exist
+      # and there is no saved commits between source & target branch
+      return git_not_found! if !@project.repo.heads.map(&:name).include?(@merge_request.source_branch) && @merge_request.commits.blank?
+    end
+
+    def define_show_vars
+      # Build a note object for comment form
+      @note = @project.notes.new(:noteable => @merge_request)
+
+      # Get commits from repository
+      # or from cache if already merged
+      @commits = @merge_request.commits
     end
   end
 end

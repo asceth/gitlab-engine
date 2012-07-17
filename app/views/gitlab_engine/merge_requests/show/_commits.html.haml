@@ -1,6 +1,8 @@
 - if @commits.present?
   .ui-box
-    %h5 Commits (#{@commits.count})
+    %h5
+      %i.icon-list
+      Commits (#{@commits.count})
     .merge-request-commits
       - if @commits.count > 8
         %ul.first_mr_commits.unstyled
@@ -9,7 +11,7 @@
           %li.bottom
             8 of #{@commits.count} commits displayed.
             %strong
-              = link_to_function "Click here to show all", "MergeRequest.showAllCommits()"
+              %a.mr_show_all_commits Click here to show all
         %ul.all_mr_commits.hide.unstyled
           - @commits.each do |commit|
             = render "gitlab_engine/commits/commit", :commit => commit

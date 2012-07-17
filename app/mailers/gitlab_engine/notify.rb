@@ -3,10 +3,11 @@ module GitlabEngine
     include Resque::Mailer
     add_template_helper ApplicationHelper
 
-    default_url_options[:host] = EMAIL_OPTS["host"]
-    default_url_options[:protocol] = -> { EMAIL_OPTS["protocol"] ? EMAIL_OPTS["protocol"] : "http" }.call
+    default_url_options[:host]     = GitlabEngine::Gitlab.config.web_host
+    default_url_options[:protocol] = GitlabEngine::Gitlab.config.web_protocol
+    default_url_options[:port]     = GitlabEngine::Gitlab.config.web_port if GitlabEngine::Gitlab.config.web_custom_port?
 
-    default from: EMAIL_OPTS["from"]
+    default from: GitlabEngine::Gitlab.config.email_from
 
     def new_user_email(user_id, password)
       @user = ::User.find(user_id)
