@@ -32,7 +32,7 @@ end
 group :development, :test do
   gem "awesome_print"
 
-  gem "capybara", :git => "https://github.com/jnicklas/capybara.git"
+  gem "capybara"
   gem "capybara-webkit", :git => "https://github.com/thoughtbot/capybara-webkit.git"
   gem "coffee-rails"
 
