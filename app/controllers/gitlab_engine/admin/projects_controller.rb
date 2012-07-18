@@ -73,7 +73,7 @@ module GitlabEngine
       @admin_project = Project.find_by_code(params[:id])
       @admin_project.destroy
 
-      redirect_to gitlab_engine.admin_projects_url
+      redirect_to gitlab_engine.admin_projects_url, :notice => 'Project was successfully deleted.'
     end
   end
 end
