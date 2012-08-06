@@ -60,7 +60,7 @@
 
   // Load last commit log for each file in tree
   $(window).load(function(){
-    ajaxGet('#{@logs_path}');
+    $.ajax({url: '#{@logs_path}', method: 'get'});
   });
 
 
