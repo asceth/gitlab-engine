@@ -61,7 +61,7 @@ class Project < ActiveRecord::Base
     end
 
     project
-  rescue Gitlab::Gitolite::AccessDenied => ex
+  rescue GitlabEngine::Gitlab::Gitolite::AccessDenied => ex
     project.error_code = :gitolite
     project
   rescue => ex
