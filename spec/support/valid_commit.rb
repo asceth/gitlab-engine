@@ -9,7 +9,6 @@ module ValidCommit
   C_FILE_PATH = "app/models"
   C_FILES = ["commit.rb", "event.rb", "issue.rb", "key.rb", "key_observer.rb", "merge_request.rb", "milestone.rb", "note.rb", "project.rb", "project_observer.rb", "protected_branch.rb", "snippet.rb", "tree.rb", "web_hook.rb", "wiki.rb"]
 
-  BLOB_FILE = %{%h3= @key.title\n%hr\n%pre= @key.key\n.actions\n  = link_to 'Remove', @key, :confirm => 'Are you sure?', :method => :delete, :class => \"btn danger delete-key\"\n\n\n}
-  BLOB_FILE_PATH = "app/views/keys/show.html.haml"
+  BLOB_FILE = %{source "http://rubygems.org"\n\ngemspec\n\n# jquery-rails is used by the dummy application\ngem "jqeury-rails"\n}
+  BLOB_FILE_PATH = "Gemfile"
 end
-
