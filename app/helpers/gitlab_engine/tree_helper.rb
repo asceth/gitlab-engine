@@ -3,14 +3,14 @@ module GitlabEngine
     def tree_icon(content)
       if content.is_a?(Grit::Blob)
         if content.text?
-          image_tag "file_txt.png"
+          image_tag "gitlab_engine/file_txt.png"
         elsif content.image?
-          image_tag "file_img.png"
+          image_tag "gitlab_engine/file_img.png"
         else
-          image_tag "file_bin.png"
+          image_tag "gitlab_engine/file_bin.png"
         end
       else
-        image_tag "file_dir.png"
+        image_tag "gitlab_engine/file_dir.png"
       end
     end
 
